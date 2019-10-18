@@ -1,24 +1,36 @@
 import re
 
 
-def format_value(number):
+def format_value(value):
     if None:
         return None
 
-    number = number.strip()
-    number = number.replace("~", "")
-    if number == "...":
+    value = value.strip()
+    value = value.replace("~", "")
+    if value == "...":
         return None
-    if re.search("(~)?\d+\.?\d+\s?/~?\s*~?\d+\.?\d+", number):
-        first, second = number.split("/")
+    if re.search("(~)?\d+\.?\d+\s?/~?\s*~?\d+\.?\d+", value):
+        # split and format the fraction (dd / dd)
+        first, second = value.split("/")
         return (float(first.strip()), float(second.strip()))
-    if re.search("-?\s?\d+\.\d+$", number):
-        number = number.replace(" ", "")
-        return float(number)
-    if re.search("\w+\)?$", number):
-        return number
-    number = number.replace(" ", "")
-    return int(number)
+    if re.search("-?\s?\d+\.\d+$", value):
+        # format decimal number
+        value = value.replace(" ", "")
+        return float(value)
+    if re.search("^\d+\s?\d*$", value):
+        # format integer with space separators
+        value = value.replace(" ", "")
+        return int(value)
+    if re.search("\([a-zA-Z]+\)?$", value):
+        # format the currency Name (Abbreviation)
+        return value
+    if re.search("[a-zA-Z\s]+", value):
+        # format the string
+        return value
+    if re.search("\d+-[a-zA-Z]+-\d+", value):
+        return value
+    value = value.replace(" ", "")
+    return int(value)
 
 
 def remove_trailing_chars(value):
@@ -57,7 +69,7 @@ def clean_general_information_header(value):
     elif value.startswith("Capital city pop."):
         return "Capital population"
     elif value.startswith("National currency"):
-        return "National curreny"
+        return "National currency"
     elif value.startswith("Exchange rate"):
         return "Exchange rate"
 

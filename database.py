@@ -47,12 +47,12 @@ class DataBaseManagement:
         region TEXT,
         membership_date TEXT,
         population INTEGER,
+        population_density REAL,
         surface_area INTEGER,
-        density REAL,
         sex_ratio REAL,
-        capital TEXT,
-        currency TEXT,
+        capital_city TEXT,
         capital_population REAL,
+        currency TEXT,
         exchange_rate REAL
         )
         """

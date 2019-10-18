@@ -6,7 +6,7 @@ from utils import *
 from database import DataBaseManagement
 
 DEBUG = True
-db = DataBaseManagement("./test.db")
+db = DataBaseManagement()
 
 if DEBUG:
     import pprint
@@ -70,19 +70,6 @@ def extract_general_information(table, country_id, db):
     rows = table.find_all("tr")
     info_dict = dict()
 
-    headings = [
-        "Region",
-        "UN membership date",
-        "Population",
-        "Population density",
-        "Surface area",
-        "Sex ratio",
-        "Capital city",
-        "Capital population",
-        "National currency", 
-        "Exchange rate",
-    ]
-
     for row in rows:
         cells = row.find_all("td")
         field = cells[0].text.replace("\xa0", "")
@@ -92,61 +79,35 @@ def extract_general_information(table, country_id, db):
             value = value[:-1]
         info_dict[cleaned_field] = value
 
+    headings = [
+        "Region",
+        "UN membership date",
+        "Population",
+        "Population density",
+        "Surface area",
+        "Sex ratio",
+        "Capital city",
+        "Capital population",
+        "National currency",
+        "Exchange rate",
+    ]
+
     cleaned_dict = {k: None for k in headings}
 
-    p.pprint(info_dict)
-
     for key in cleaned_dict:
-        print(key)
         cleaned_dict[key] = format_value(info_dict.get(key, None))
 
-    p.pprint(info_dict)
+    item_tuples = (country_id,) + tuple(value for value in cleaned_dict.values())
+    p.pprint(item_tuples)
 
-    sql_stmt = """
-        INSERT INTO GeneralInfo (country_id, region, membership_date, population, surface_area, density, sex_ratio, capital, currency, capital_population, exchange_rate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    stmt = """
+        INSERT INTO GeneralInfo (country_id, region, membership_date, population, population_density, surface_area, sex_ratio, capital_city, capital_population, currency, exchange_rate) VALUES (
+            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+            ?
+        )
     """
 
-    # region = info_dict["Region"]
-    # membership_date = info_dict["UN membership date"]
-
-    # pre_population = info_dict["Population(000, 2018)"].replace(" ", "")
-    # population = int(pre_population)
-
-    # pre_surface_area = info_dict["Surface area(km2)"].replace(" ", "")
-    # surface_area = int(pre_surface_area)
-
-    # pre_density = info_dict["Pop. density(per km2, 2018)"].replace(" ", "")
-    # density = float(pre_density)
-
-    # pre_sex_ratio = info_dict["Sex ratio(m per 100 f)"].replace(" ", "")
-    # sex_ratio = float(pre_sex_ratio)
-
-    # capital = info_dict["Capital city"]
-    # currency = info_dict["National currency"]
-
-    # pre_capital_population = info_dict["Capital city pop.(000, 2018)"].replace(" ", "")
-    # capital_population = float(pre_capital_population)
-
-    # pre_exchange_rate = info_dict["Exchange rate(per US$)"].replace(" ", "")
-    # exchange_rate = float(pre_exchange_rate)
-
-    db.cursor.execute(
-        sql_stmt,
-        (
-            country_id,
-            region,
-            membership_date,
-            population,
-            surface_area,
-            density,
-            sex_ratio,
-            capital,
-            currency,
-            capital_population,
-            exchange_rate,
-        ),
-    )
-
+    db.cursor.execute(stmt, item_tuples)
     db.conn.commit()
 
 

@@ -6,11 +6,15 @@ from utils import *
 from database import DataBaseManagement
 
 DEBUG = True
-db = DataBaseManagement()
+db = DataBaseManagement("./test.db")
 
 if DEBUG:
+    import pprint
+
+    p = pprint.PrettyPrinter(indent=4)
     db.drop_tables()
     db.create_table()
+
 
 BASE_URL = "http://data.un.org/"
 
@@ -53,12 +57,12 @@ def extract_country(country_id, country_name, country_link, db):
     for table in tables:
         if table.summary.text == "General Information":
             extract_general_information(table, country_id, db)
-        elif table.summary.text == "Social indicators":
-            extract_economic_indicators(table, country_id, db)
-        elif table.summary.text == "Economic indicators":
-            extract_social_indicators(table, country_id, db)
-        elif table.summary.text == "Environment and infrastructure indicators":
-            extract_env_indicators(table, country_id, db)
+        # elif table.summary.text == "Social indicators":
+        #     extract_economic_indicators(table, country_id, db)
+        # elif table.summary.text == "Economic indicators":
+        #     extract_social_indicators(table, country_id, db)
+        # elif table.summary.text == "Environment and infrastructure indicators":
+        #     extract_env_indicators(table, country_id, db)
 
 
 def extract_general_information(table, country_id, db):
@@ -66,43 +70,65 @@ def extract_general_information(table, country_id, db):
     rows = table.find_all("tr")
     info_dict = dict()
 
-    headers = """Region, UN membership date, Population(000, 2018), Surface area(km2), Pop. density(per km2, 2018),	Sex ratio(m per 100 f),	Capital city,	National currency,	Capital city pop.(000, 2018),	Exchange rate(per US$)"""
+    headings = [
+        "Region",
+        "UN membership date",
+        "Population",
+        "Population density",
+        "Surface area",
+        "Sex ratio",
+        "Capital city",
+        "Capital population",
+        "National currency", 
+        "Exchange rate",
+    ]
 
     for row in rows:
         cells = row.find_all("td")
         field = cells[0].text.replace("\xa0", "")
+        cleaned_field = clean_general_information_header(field)
         value = cells[2].text.replace("\xa0", "")
         if re.search("\d+\s?\.?\d+[a-z]", value):
             value = value[:-1]
-        info_dict[field] = value
+        info_dict[cleaned_field] = value
+
+    cleaned_dict = {k: None for k in headings}
+
+    p.pprint(info_dict)
+
+    for key in cleaned_dict:
+        print(key)
+        cleaned_dict[key] = format_value(info_dict.get(key, None))
+
+    p.pprint(info_dict)
 
     sql_stmt = """
         INSERT INTO GeneralInfo (country_id, region, membership_date, population, surface_area, density, sex_ratio, capital, currency, capital_population, exchange_rate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """
 
-    region = info_dict["Region"]
-    membership_date = info_dict["UN membership date"]
+    # region = info_dict["Region"]
+    # membership_date = info_dict["UN membership date"]
 
-    pre_population = info_dict["Population(000, 2018)"].replace(" ", "")
-    population = int(pre_population)
+    # pre_population = info_dict["Population(000, 2018)"].replace(" ", "")
+    # population = int(pre_population)
 
-    pre_surface_area = info_dict["Surface area(km2)"].replace(" ", "")
-    surface_area = int(pre_surface_area)
+    # pre_surface_area = info_dict["Surface area(km2)"].replace(" ", "")
+    # surface_area = int(pre_surface_area)
 
-    pre_density = info_dict["Pop. density(per km2, 2018)"].replace(" ", "")
-    density = float(pre_density)
+    # pre_density = info_dict["Pop. density(per km2, 2018)"].replace(" ", "")
+    # density = float(pre_density)
 
-    pre_sex_ratio = info_dict["Sex ratio(m per 100 f)"].replace(" ", "")
-    sex_ratio = float(pre_sex_ratio)
+    # pre_sex_ratio = info_dict["Sex ratio(m per 100 f)"].replace(" ", "")
+    # sex_ratio = float(pre_sex_ratio)
 
-    capital = info_dict["Capital city"]
-    currency = info_dict["National currency"]
+    # capital = info_dict["Capital city"]
+    # currency = info_dict["National currency"]
 
-    pre_capital_population = info_dict["Capital city pop.(000, 2018)"].replace(" ", "")
-    capital_population = float(pre_capital_population)
+    # pre_capital_population = info_dict["Capital city pop.(000, 2018)"].replace(" ", "")
+    # capital_population = float(pre_capital_population)
 
-    pre_exchange_rate = info_dict["Exchange rate(per US$)"].replace(" ", "")
-    exchange_rate = float(pre_exchange_rate)
+    # pre_exchange_rate = info_dict["Exchange rate(per US$)"].replace(" ", "")
+    # exchange_rate = float(pre_exchange_rate)
 
     db.cursor.execute(
         sql_stmt,
@@ -261,17 +287,17 @@ def extract_env_indicators(table, country_id, db):
     db.conn.commit()
 
 
-find_country_link(db)
-countries = db.cursor.execute(
-    """
-    SELECT id, name, link FROM Countries LIMIT 5
-    """
-)
+# find_country_link(db)
+# countries = db.cursor.execute(
+#     """
+#     SELECT id, name, link FROM Countries LIMIT 5
+#     """
+# )
 
-for country in countries.fetchall():
-    print(country)
-    extract_country(*country, db)
-# extract_country(1, "AF", "en/iso/af.html", db)
+# for country in countries.fetchall():
+#     print(country)
+#     extract_country(*country, db)
+extract_country(1, "AF", "en/iso/af.html", db)
 
 db.conn.commit()
 

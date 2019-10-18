@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "af02b2c2c611b4b77ffecc60e768ac870db4acb8e2a290ad9b5147c8129a89a1"
+            "sha256": "f53c4f39031502284ea20b6460a90ccba627f890fbb2f7e8429860e6488455fe"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -82,6 +82,12 @@
             ],
             "version": "==7.0"
         },
+        "et-xmlfile": {
+            "hashes": [
+                "sha256:614d9722d572f6246302c4491846d2c393c199cfa4edc9af593437691683335b"
+            ],
+            "version": "==1.0.1"
+        },
         "idna": {
             "hashes": [
                 "sha256:c357b3f628cf53ae2c4c05627ecc484553142ca23264e593d327bcde5e9c3407",
@@ -95,6 +101,13 @@
                 "sha256:6e811fcb295968434526407adb8796944f1988c5b65e8139058f2014cbe100fd"
             ],
             "version": "==4.3.21"
+        },
+        "jdcal": {
+            "hashes": [
+                "sha256:1abf1305fce18b4e8aa248cf8fe0c56ce2032392bc64bbd61b5dff2a19ec8bba",
+                "sha256:472872e096eb8df219c23f2689fc336668bdb43d194094b5cc1707e1640acfc8"
+            ],
+            "version": "==1.4.1"
         },
         "lazy-object-proxy": {
             "hashes": [
@@ -125,6 +138,13 @@
                 "sha256:dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f"
             ],
             "version": "==0.6.1"
+        },
+        "openpyxl": {
+            "hashes": [
+                "sha256:340a1ab2069764559b9d58027a43a24db18db0e25deb80f81ecb8ca7ee5253db"
+            ],
+            "index": "pypi",
+            "version": "==3.0.0"
         },
         "pylint": {
             "hashes": [

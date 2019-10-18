@@ -2,7 +2,8 @@ import re
 
 
 def format_value(value):
-    if None:
+    print(value)
+    if not value:
         return None
 
     value = value.strip()
@@ -74,28 +75,23 @@ def clean_general_information_header(value):
         return "Exchange rate"
 
 
-headings = [
-    "Region",
-    "UN membership date",
-    "Population",
-    "Population density",
-    "Surface area",
-    "Sex ratio",
-    "Capital city",
-    "Capital population",
-    "National currency" "Exchange rate",
+s = "Population growth ratef(average annual %)	Urban population(% of total population)	Urban population growth ratef(average annual %)	Fertility rate, totalf(live births per woman)	Life expectancy at birthf(females/males, years)	Population age distribution(0-14/60+ years old, %)	International migrant stock(000/% of total pop.)	Refugees and others of concern to UNHCR000	Infant mortality ratef(per 1 000 live births)	Health: Current expenditure(% of GDP)	Health: Physicians(per 1 000 pop.)	Education: Government expenditure(% of GDP)	Education: Primary gross enrol. ratio(f/m per 100 pop.)	Education: Secondary gross enrol. ratio(f/m per 100 pop.)	Education: Tertiary gross enrol. ratio(f/m per 100 pop.)	Intentional homicide rate(per 100 000 pop.)	Seats held by women in National Parliaments(%)"
+
+headers = [
+    "Population growth",
+    "Urban population",
+    "Urban population growth",
+    "Fertility rate",
+    "Life expectancy (females)",
+    "Life expectancy (males)",
+    "Population distribution (children)",
+    "Population distribution (adults)",
+    "Migrant",
+    "Refugees",
+    "Infant mortality",
+    "Health expenditure ",
+    "Physicians",
+    "Education expenditure",
+    "Primary enroll",
+    "Secondary enroll",
 ]
-
-{
-    "Capital city": "Kabul",
-    "Capital city pop.(000, 2018)": "4 011.8",
-    "Exchange rate(per US$)": "69.5",
-    "National currency": "Afghani (AFN)",
-    "Pop. density(per km2, 2018)": "55.7",
-    "Population(000, 2018)": "36 373",
-    "Region": "Southern Asia",
-    "Sex ratio(m per 100 f)": "106.2",
-    "Surface area(km2)": "652 864",
-    "UN membership date": "19-Nov-46",
-}
-

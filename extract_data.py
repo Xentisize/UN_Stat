@@ -26,7 +26,7 @@ def find_country_link(db):
     countries = parsed_html.find_all(class_="CountryList")[0]
     country_links = countries.find_all("a")
 
-    for country in country_links:
+    for country in country_links[:5]:
         name = country.text
         link = country["href"]
 
@@ -258,7 +258,7 @@ def extract_env_indicators(table, country_id, db):
 # for country in countries.fetchall():
 #     print(country)
 #     extract_country(*country, db)
-extract_country(1, "AF", "en/iso/af.html", db)
+# extract_country(1, "AS", "en/iso/as.html", db)
 
 db.conn.commit()
 

@@ -2,75 +2,15 @@ import requests
 from bs4 import BeautifulSoup
 import sqlite3
 import re
+from utils import *
+from database import DataBaseManagement
 
-db = sqlite3.connect("un.db")
-cursor = db.cursor()
+DEBUG = True
+db = DataBaseManagement()
 
-cursor.executescript(
-    """
-DROP TABLE IF EXISTS Countries;
-DROP TABLE IF EXISTS GeneralInfo;
-DROP TABLE IF EXISTS EconIndicator;
-"""
-)
-
-cursor.execute(
-    """
-CREATE TABLE Countries (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT,
-    link TEXT
-)
-"""
-)
-
-cursor.execute(
-    """
-    CREATE TABLE GeneralInfo (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        country_id INTEGER,
-        region TEXT,
-        membership_date TEXT,
-        population INTEGER,
-        surface_area INTEGER,
-        density REAL,
-        sex_ratio REAL,
-        capital TEXT,
-        currency TEXT,
-        capital_population REAL,
-        exchange_rate REAL
-    )
-    """
-)
-
-cursor.execute(
-    """
-    CREATE TABLE EconIndicator (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        country_id INTEGER,
-        year INTEGER,
-        GDP INTEGER,
-        GDP_growth REAL,
-        GDP_per_capita REAL,
-        agriculture REAL,
-        industry REAL,
-        services REAL,
-        employ_agriculture REAL,
-        employ_industry REAL,
-        employ_services REAL,
-        unemployment REAL,
-        participation_rate_female REAL,
-        participation_rate_male REAL,
-        CPI INTEGER,
-        agriculture_index INTEGER,
-        exports INTEGER,
-        imports INTEGER,
-        trade_balance INTEGER,
-        current_account INTEGER
-    )
-    """
-)
-
+if DEBUG:
+    db.drop_tables()
+    db.create_table()
 
 BASE_URL = "http://data.un.org/"
 
@@ -86,14 +26,14 @@ def find_country_link(db):
         name = country.text
         link = country["href"]
 
-        db.cursor().execute(
+        db.cursor.execute(
             """
             INSERT INTO Countries (name, link) VALUES (?, ?)
         """,
             (name, link),
         )
 
-    db.commit()
+    db.conn.commit()
 
 
 def extract_country(country_id, country_name, country_link, db):
@@ -102,20 +42,31 @@ def extract_country(country_id, country_name, country_link, db):
     parsed_html = BeautifulSoup(html, "html.parser")
 
     tables = parsed_html.find_all("details")
-    print(len(tables))
-    general_information_table = tables[0]
 
-    economic_table = tables[1]
+    # extraction_list = {
+    #     "General Information": extract_general_information,
+    #     "Economic indicators": extract_economic_indicators,
+    #     "Social indicators": extract_social_indicators,
+    #     "Environment and infrastructure indicators": extract_env_indicators,
+    # }
 
-    # extract_general_information(general_information_table, country_id, db)
-    extract_economic_indicators(economic_table, country_id, db)
-    db.commit()
+    for table in tables:
+        if table.summary.text == "General Information":
+            extract_general_information(table, country_id, db)
+        elif table.summary.text == "Social indicators":
+            extract_economic_indicators(table, country_id, db)
+        elif table.summary.text == "Economic indicators":
+            extract_social_indicators(table, country_id, db)
+        elif table.summary.text == "Environment and infrastructure indicators":
+            extract_env_indicators(table, country_id, db)
 
 
 def extract_general_information(table, country_id, db):
     table_name = table.summary.text
     rows = table.find_all("tr")
     info_dict = dict()
+
+    headers = """Region, UN membership date, Population(000, 2018), Surface area(km2), Pop. density(per km2, 2018),	Sex ratio(m per 100 f),	Capital city,	National currency,	Capital city pop.(000, 2018),	Exchange rate(per US$)"""
 
     for row in rows:
         cells = row.find_all("td")
@@ -153,7 +104,7 @@ def extract_general_information(table, country_id, db):
     pre_exchange_rate = info_dict["Exchange rate(per US$)"].replace(" ", "")
     exchange_rate = float(pre_exchange_rate)
 
-    db.cursor().execute(
+    db.cursor.execute(
         sql_stmt,
         (
             country_id,
@@ -170,9 +121,10 @@ def extract_general_information(table, country_id, db):
         ),
     )
 
+    db.conn.commit()
+
 
 def extract_economic_indicators(table, country_id, db):
-    # Problem in agriculture index
     table_name = table.summary.text
     rows = table.find_all("tr")[1:]
 
@@ -194,75 +146,132 @@ def extract_economic_indicators(table, country_id, db):
         econ_dict["2010"].update({cell_name: year_2010})
         econ_dict["2018"].update({cell_name: year_2018})
 
+        # print(econ_dict)
+
     for year in econ_dict.keys():
         data = econ_dict[year]
         yearly_data = flatten_tuple(data.values())
         yearly_data = (country_id, int(year), *yearly_data)
+        if not len(yearly_data) == 21:
+            yearly_data = (*yearly_data, None)
 
-        db.cursor().execute(
+        print("Econ Indicator: ")
+        print(yearly_data)
+
+        db.cursor.execute(
             """
-            INSERT INTO EconIndicator (country_id, year, GDP, GDP_growth, GDP_per_capita, agriculture, industry, services, employ_agriculture, employ_industry, employ_services, unemployment, participation_rate_female, participation_rate_male, CPI, agriculture, exports, imports, trade_balance, current_account) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO EconIndicator (country_id, year, GDP, GDP_growth, GDP_per_capita, agriculture, industry, services, employ_agriculture, employ_industry, employ_services, unemployment, participation_rate_female, participation_rate_male, CPI, agriculture_index, exports, imports, trade_balance, current_account, industrial_index) VALUES (
+                ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
+                ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+                ?)
             """,
             yearly_data,
         )
 
-    # """
-    #     CREATE TABLE EconIndicator (
-    #         id INTEGER PRIMARY KEY AUTOINCREMENT,
-    #         country_id INTEGER,
-    #         GDP INTEGER,
-    #         GDP_growth REAL,
-    #         GDP_per_capita REAL,
-    #         agriculture REAL,
-    #         industry REAL,
-    #         services REAL,
-    #         employ_agriculture REAL,
-    #         employ_industry REAL,
-    #         employ_services REAL,
-    #         unemployment REAL,
-    #         participation_rate_female REAL,
-    #         participation_rate_male REAL,
-    #         CPI INTEGER,
-    #         agriculture_index INTEGER,
-    #         exports INTEGER,
-    #         imports INTEGER,
-    #         trade_balance INTEGER,
-    #         current_account INTEGER
-    #     )
-    #     """
+    db.conn.commit()
 
 
-def format_value(number):
-    number = number.strip()
-    if number == "...":
-        return None
-    if re.search("\d+\.?\d+\s?/\s*\d+\.?\d+", number):
-        female, male = number.split("/")
-        return (float(female.strip()), float(male.strip()))
-    if re.search("-?\s?\d+\.\d+$", number):
-        number = number.replace(" ", "")
-        return float(number)
-    number = number.replace(" ", "")
-    return int(number)
+def extract_social_indicators(table, country_id, db):
+    table_name = table.summary.text
+    rows = table.find_all("tr")[1:]
+
+    social_dict = {"2005": {}, "2010": {}, "2018": {}}
+
+    for row in rows:
+        cells = row.find_all("td")
+        cell_name = cells[0].text.replace("\xa0", "")
+
+        year_2005 = remove_trailing_chars(cells[1].text)
+        year_2010 = remove_trailing_chars(cells[2].text)
+        year_2018 = remove_trailing_chars(cells[3].text)
+
+        year_2005 = format_value(year_2005)
+        year_2010 = format_value(year_2010)
+        year_2018 = format_value(year_2018)
+
+        social_dict["2005"].update({cell_name: year_2005})
+        social_dict["2010"].update({cell_name: year_2010})
+        social_dict["2018"].update({cell_name: year_2018})
+
+    for year in social_dict.keys():
+        data = social_dict[year]
+        yearly_data = flatten_tuple(data.values())
+        yearly_data = (country_id, int(year), *yearly_data)
+
+        print("Social Indicator: ")
+        print(yearly_data)
+
+        db.cursor.execute(
+            """
+            INSERT INTO SocialIndicator (
+                country_id, year, population_growth, urban_population, urban_population_growth,fertility_rate, life_expectancy_females, life_expectancy_males, population_distribution_children, population_distribution_adults, migrant, migrant_ratio, refugees, infant_mortality, health_expenditure, physicians_ratio, education_expenditure, primary_enroll_ratio_females, primary_enroll_ratio_males, secondary_enroll_ratio_females, secondary_enroll_ratio_males, tertiary_enroll_ratio_females, tertiary_enroll_ratio_males, homicide_rate, women_in_parliaments
+            ) VALUES (
+                ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
+                ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
+                ?, ?, ?, ?, ?
+            )
+            """,
+            yearly_data,
+        )
+
+    db.conn.commit()
 
 
-def remove_trailing_chars(value):
-    m = re.search("\d+\s?\.?\d+([a-z,]+)", value)
-    if m:
-        value = value.replace(m.group(1), "")
-        return value
-    return value
+def extract_env_indicators(table, country_id, db):
+    table_name = table.summary.text
+    rows = table.find_all("tr")[1:]
+
+    social_dict = {"2005": {}, "2010": {}, "2018": {}}
+
+    for row in rows:
+        cells = row.find_all("td")
+        cell_name = cells[0].text.replace("\xa0", "")
+
+        year_2005 = remove_trailing_chars(cells[1].text)
+        year_2010 = remove_trailing_chars(cells[2].text)
+        year_2018 = remove_trailing_chars(cells[3].text)
+
+        year_2005 = format_value(year_2005)
+        year_2010 = format_value(year_2010)
+        year_2018 = format_value(year_2018)
+
+        social_dict["2005"].update({cell_name: year_2005})
+        social_dict["2010"].update({cell_name: year_2010})
+        social_dict["2018"].update({cell_name: year_2018})
+
+    for year in social_dict.keys():
+        data = social_dict[year]
+        yearly_data = flatten_tuple(data.values())
+        yearly_data = (country_id, int(year), *yearly_data)
+
+        print("Env Indicator: ")
+        print(yearly_data)
+
+        db.cursor.execute(
+            """
+            INSERT INTO EnvIndicator (
+                country_id, year, internet_individual, threatened_species, forested_area, carbon_dioxide_emission, carbon_dioxide_emission_per_capita, energy_production, energy_supply, protected_sites_ratio, drinking_water_urban, drinking_water_rural, sanitation_urban, sanitation_rural, assistance_received
+            ) VALUES (
+                ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+                ?, ?, ?, ?, ?
+            )
+        """,
+            yearly_data,
+        )
+    db.conn.commit()
 
 
-def flatten_tuple(values):
-    expanded_list = []
-    for el in values:
-        if isinstance(el, tuple):
-            expanded_list = expanded_list + [*el]
-        else:
-            expanded_list.append(el)
-    return expanded_list
+find_country_link(db)
+countries = db.cursor.execute(
+    """
+    SELECT id, name, link FROM Countries LIMIT 5
+    """
+)
 
+for country in countries.fetchall():
+    print(country)
+    extract_country(*country, db)
+# extract_country(1, "AF", "en/iso/af.html", db)
 
-extract_country(1, "AF", "en/iso/af.html", db)
+db.conn.commit()
 

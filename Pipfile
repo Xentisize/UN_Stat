@@ -11,6 +11,7 @@ pylint = "*"
 black = "*"
 requests = "*"
 beautifulsoup4 = "*"
+openpyxl = "*"
 
 [requires]
 python_version = "3.7"

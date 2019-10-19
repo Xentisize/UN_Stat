@@ -119,3 +119,44 @@ def clean_social_indicator_header(value):
     elif value.startswith("Seats"):
         return "Women in parliaments"
 
+
+def clean_econ_indicator_header(value):
+    # shorthand to save typing
+    v = value
+    if v.startswith("GDP:"):
+        return "GDP"
+    elif v.startswith("GDP growth"):
+        return "GDP growth"
+    elif v.startswith("GDP per"):
+        return "GDP per capita"
+    elif v.startswith("Economy: Agriculture"):
+        return "Agriculture"
+    elif v.startswith("Economy: Industry"):
+        return "Industry"
+    elif v.startswith("Economy: Services"):
+        return "Services"
+    elif v.startswith("Employment in agriculture"):
+        return "Agriculture employment"
+    elif v.startswith("Employment in industry"):
+        return "Industry employment"
+    elif v.startswith("Employment in services"):
+        return "Services employment"
+    elif v.startswith("Unemployment"):
+        return "Unemployment rate"
+    elif v.startswith("Labour"):
+        return "Labour participation (females)"
+    elif v.startswith("CPI"):
+        return "CPI"
+    elif v.startswith("Agricultural"):
+        return "Agricultural index"
+    elif v.startswith("Index of industrial"):
+        return "Industrial index"
+    elif v.startswith("International trade: exports"):
+        return "Exports"
+    elif v.startswith("International trade: imports"):
+        return "Imports"
+    elif v.startswith("International trade: balance"):
+        return "Trade balance"
+    elif v.startswith("Balance of payments"):
+        return "Current account"
+

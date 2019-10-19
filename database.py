@@ -66,28 +66,50 @@ class DataBaseManagement:
         country_id INTEGER,
         year INTEGER,
         GDP INTEGER,
-        GDP_growth REAL,
-        GDP_per_capita REAL,
-        agriculture REAL,
-        industry REAL,
-        services REAL,
-        employ_agriculture REAL,
-        employ_industry REAL,
-        employ_services REAL,
-        unemployment REAL,
-        participation_rate_female REAL,
-        participation_rate_male REAL,
-        CPI INTEGER,
-        agriculture_index INTEGER,
-        industrial_index INTEGER,
-        exports INTEGER,
-        imports INTEGER,
-        trade_balance INTEGER,
-        current_account INTEGER
+        "GDP growth" REAL,
+        "GDP per capita" REAL,
+        "Agriculture" REAL,
+        "Industry" REAL,
+        "Services" REAL,
+        "Agriculture employment" REAL,
+        "Industry employment" REAL,
+        "Services employment" REAL,
+        "Unemployment rate" REAL,
+        "Labour participation (females)" REAL,
+        "Labour participation (males)" REAL,
+        "CPI" INTEGER,
+        "Agricultural index" INTEGER,
+        "Industrial index" INTEGER,
+        "Exports" INTEGER,
+        "Imports" INTEGER,
+        "Trade balance" INTEGER,
+        "Current account" INTEGER
         )
         """
         self.cursor.execute(stmt)
         self.conn.commit()
+
+    econ_headings = [
+        "GDP",
+        "GDP growth",
+        "GDP per capita",
+        "Agriculture",
+        "Industry",
+        "Services",
+        "Agriculture employment",
+        "Industry employment",
+        "Services employment",
+        "Unemployment rate",
+        "Labour participation (females)",
+        "Labour participation (males)",
+        "CPI",
+        "Agricultural index",
+        "Industrial index",
+        "Exports",
+        "Imports",
+        "Trade balance",
+        "Current account",
+    ]
 
     def create_social_table(self):
         stmt = """
@@ -156,7 +178,7 @@ class DataBaseManagement:
         # DROP TABLE IF EXISTS EnvIndicator;
         # """
         stmt = """
-        DROP TABLE IF EXISTS SocialIndicator;
+        DROP TABLE IF EXISTS EconIndicator;
         """
         self.cursor.executescript(stmt)
         self.conn.commit()

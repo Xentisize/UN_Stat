@@ -95,29 +95,29 @@ class DataBaseManagement:
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             country_id INTEGER,
             year INTEGER,
-            population_growth REAL,
-            urban_population REAL,
-            urban_population_growth REAL,
-            fertility_rate REAL,
-            life_expectancy_females REAL,
-            life_expectancy_males REAL,
-            population_distribution_children REAL,
-            population_distribution_adults REAL,
-            migrant REAL,
-            migrant_ratio REAL,
-            refugees REAL,
-            infant_mortality REAL,
-            health_expenditure REAL,
-            physicians_ratio REAL,
-            education_expenditure REAL,
-            primary_enroll_ratio_females REAL,
-            primary_enroll_ratio_males REAL,
-            secondary_enroll_ratio_females REAL,
-            secondary_enroll_ratio_males REAL,
-            tertiary_enroll_ratio_females REAL,
-            tertiary_enroll_ratio_males REAL,
-            homicide_rate REAL,
-            women_in_parliaments REAL
+            "Population growth" REAL,
+            "Urban population" REAL,
+            "Urban population growth" REAL,
+            "Fertility rate" REAL,
+            "Life expectancy (females)" REAL,
+            "Life expectancy (males)" REAL,
+            "Population distribution (children)" REAL,
+            "Population distribution (elders)" REAL,
+            "Migrant" REAL,
+            "Migrant ratio" REAL,
+            "Refugees" REAL,
+            "Infant mortality" REAL,
+            "Health expenditure" REAL,
+            "Physicians ratio" REAL,
+            "Education expenditure" REAL,
+            "Primary enroll ratio (females)" REAL,
+            "Primary enroll ratio (males)" REAL,
+            "Secondary enroll ratio (females)" REAL,
+            "Secondary enroll ratio (males)" REAL,
+            "Tertiary enroll ratio (females)" REAL,
+            "Tertiary enroll ratio (males)" REAL,
+            "Homicide rate" REAL,
+            "Women in parliaments" REAL
         )
         """
         self.cursor.execute(stmt)
@@ -148,12 +148,15 @@ class DataBaseManagement:
         self.conn.commit()
 
     def drop_tables(self):
+        # stmt = """
+        # DROP TABLE IF EXISTS Countries;
+        # DROP TABLE IF EXISTS GeneralInfo;
+        # DROP TABLE IF EXISTS EconIndicator;
+        # DROP TABLE IF EXISTS SocialIndicator;
+        # DROP TABLE IF EXISTS EnvIndicator;
+        # """
         stmt = """
-        DROP TABLE IF EXISTS Countries;
-        DROP TABLE IF EXISTS GeneralInfo;                
-        DROP TABLE IF EXISTS EconIndicator;
         DROP TABLE IF EXISTS SocialIndicator;
-        DROP TABLE IF EXISTS EnvIndicator;
         """
         self.cursor.executescript(stmt)
         self.conn.commit()

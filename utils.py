@@ -10,6 +10,8 @@ def format_value(value):
     value = value.replace("~", "")
     if value == "...":
         return None
+    if value == "... / ...":
+        return value.split(" / ")
     if re.search("(~)?\d+\.?\d+\s?/~?\s*~?\d+\.?\d+", value):
         # split and format the fraction (dd / dd)
         first, second = value.split("/")
@@ -75,23 +77,45 @@ def clean_general_information_header(value):
         return "Exchange rate"
 
 
-s = "Population growth ratef(average annual %)	Urban population(% of total population)	Urban population growth ratef(average annual %)	Fertility rate, totalf(live births per woman)	Life expectancy at birthf(females/males, years)	Population age distribution(0-14/60+ years old, %)	International migrant stock(000/% of total pop.)	Refugees and others of concern to UNHCR000	Infant mortality ratef(per 1 000 live births)	Health: Current expenditure(% of GDP)	Health: Physicians(per 1 000 pop.)	Education: Government expenditure(% of GDP)	Education: Primary gross enrol. ratio(f/m per 100 pop.)	Education: Secondary gross enrol. ratio(f/m per 100 pop.)	Education: Tertiary gross enrol. ratio(f/m per 100 pop.)	Intentional homicide rate(per 100 000 pop.)	Seats held by women in National Parliaments(%)"
+def clean_social_indicator_header(value):
+    if value.startswith("Population growth"):
+        return "Population growth"
+    elif value.startswith("Urban population(% of"):
+        return "Urban population"
+    elif value.startswith("Urban population growth"):
+        return "Urban population growth"
+    elif value.startswith("Fertility"):
+        return "Fertility rate"
+    elif value.startswith("Life expectancy"):
+        # Life expectancy for males is pending
+        return "Life expectancy (females)"
+    elif value.startswith("Population age"):
+        # Population distribution for elders is pending
+        return "Population distribution (children)"
+    elif value.startswith("International migrant"):
+        # Migrant ratio is pending
+        return "Migrant"
+    elif value.startswith("Refugees"):
+        return "Refugees"
+    elif value.startswith("Infant"):
+        return "Infant mortality"
+    elif value.startswith("Health: Current"):
+        return "Health expenditure"
+    elif value.startswith("Health: Physicians"):
+        return "Physicians ratio"
+    elif value.startswith("Education: Government"):
+        return "Education expenditure"
+    elif value.startswith("Education: Primary"):
+        # male is pending
+        return "Primary enroll ratio (females)"
+    elif value.startswith("Education: Secondary"):
+        # male is pending
+        return "Secondary enroll ratio (females)"
+    elif value.startswith("Education: Tertiary"):
+        # male is pending
+        return "Tertiary enroll ratio (females)"
+    elif value.startswith("Intentional homicide"):
+        return "Homicide rate"
+    elif value.startswith("Seats"):
+        return "Women in parliaments"
 
-headers = [
-    "Population growth",
-    "Urban population",
-    "Urban population growth",
-    "Fertility rate",
-    "Life expectancy (females)",
-    "Life expectancy (males)",
-    "Population distribution (children)",
-    "Population distribution (adults)",
-    "Migrant",
-    "Refugees",
-    "Infant mortality",
-    "Health expenditure ",
-    "Physicians",
-    "Education expenditure",
-    "Primary enroll",
-    "Secondary enroll",
-]

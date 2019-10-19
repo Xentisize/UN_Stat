@@ -6,14 +6,14 @@ from utils import *
 from database import DataBaseManagement
 
 DEBUG = True
-db = DataBaseManagement()
+db = DataBaseManagement("./test.db")
 
 if DEBUG:
     import pprint
 
     p = pprint.PrettyPrinter(indent=4)
     db.drop_tables()
-    db.create_table()
+    db.create_table(table="social")
 
 
 BASE_URL = "http://data.un.org/"
@@ -47,20 +47,14 @@ def extract_country(country_id, country_name, country_link, db):
 
     tables = parsed_html.find_all("details")
 
-    # extraction_list = {
-    #     "General Information": extract_general_information,
-    #     "Economic indicators": extract_economic_indicators,
-    #     "Social indicators": extract_social_indicators,
-    #     "Environment and infrastructure indicators": extract_env_indicators,
-    # }
-
     for table in tables:
         if table.summary.text == "General Information":
-            extract_general_information(table, country_id, db)
-        # elif table.summary.text == "Social indicators":
-        #     extract_economic_indicators(table, country_id, db)
+            # extract_general_information(table, country_id, db)
+            pass
+        elif table.summary.text == "Social indicators":
+            extract_social_indicators(table, country_id, db)
         # elif table.summary.text == "Economic indicators":
-        #     extract_social_indicators(table, country_id, db)
+        #     extract_econ_indicators(table, country_id, db)
         # elif table.summary.text == "Environment and infrastructure indicators":
         #     extract_env_indicators(table, country_id, db)
 
@@ -98,7 +92,6 @@ def extract_general_information(table, country_id, db):
         cleaned_dict[key] = format_value(info_dict.get(key, None))
 
     item_tuples = (country_id,) + tuple(value for value in cleaned_dict.values())
-    p.pprint(item_tuples)
 
     stmt = """
         INSERT INTO GeneralInfo (country_id, region, membership_date, population, population_density, surface_area, sex_ratio, capital_city, capital_population, currency, exchange_rate) VALUES (
@@ -120,6 +113,7 @@ def extract_economic_indicators(table, country_id, db):
     for row in rows:
         cells = row.find_all("td")
         cell_name = cells[0].text.replace("\xa0", "")
+        cleaned_cell_name = clean_social_indicator_header(cell_name)
 
         year_2005 = remove_trailing_chars(cells[1].text)
         year_2010 = remove_trailing_chars(cells[2].text)
@@ -129,9 +123,9 @@ def extract_economic_indicators(table, country_id, db):
         year_2010 = format_value(year_2010)
         year_2018 = format_value(year_2018)
 
-        econ_dict["2005"].update({cell_name: year_2005})
-        econ_dict["2010"].update({cell_name: year_2010})
-        econ_dict["2018"].update({cell_name: year_2018})
+        econ_dict["2005"].update({cleaned_cell_name: year_2005})
+        econ_dict["2010"].update({cleaned_cell_name: year_2010})
+        econ_dict["2018"].update({cleaned_cell_name: year_2018})
 
         # print(econ_dict)
 
@@ -162,11 +156,45 @@ def extract_social_indicators(table, country_id, db):
     table_name = table.summary.text
     rows = table.find_all("tr")[1:]
 
+    headings = [
+        "country_id",
+        "year",
+        "Population growth",
+        "Urban population",
+        "Urban population growth",
+        "Fertility rate",
+        "Life expectancy (females)",
+        "Life expectancy (males)",
+        "Population distribution (children)",
+        "Population distribution (elders)",
+        "Migrant",
+        "Migrant ratio",
+        "Refugees",
+        "Infant mortality",
+        "Health expenditure",
+        "Physicians ratio",
+        "Education expenditure",
+        "Primary enroll ratio (females)",
+        "Primary enroll ratio (males)",
+        "Secondary enroll ratio (females)",
+        "Secondary enroll ratio (males)",
+        "Tertiary enroll ratio (females)",
+        "Tertiary enroll ratio (males)",
+        "Homicide rate",
+        "Women in parliaments",
+    ]
+
     social_dict = {"2005": {}, "2010": {}, "2018": {}}
+
+    # initialize the dict with all headings
+    for year in ["2005", "2010", "2018"]:
+        for heading in headings:
+            social_dict[year][heading] = None
 
     for row in rows:
         cells = row.find_all("td")
         cell_name = cells[0].text.replace("\xa0", "")
+        cleaned_cell_name = clean_social_indicator_header(cell_name)
 
         year_2005 = remove_trailing_chars(cells[1].text)
         year_2010 = remove_trailing_chars(cells[2].text)
@@ -176,30 +204,87 @@ def extract_social_indicators(table, country_id, db):
         year_2010 = format_value(year_2010)
         year_2018 = format_value(year_2018)
 
-        social_dict["2005"].update({cell_name: year_2005})
-        social_dict["2010"].update({cell_name: year_2010})
-        social_dict["2018"].update({cell_name: year_2018})
+        social_dict["2005"].update({cleaned_cell_name: year_2005})
+        social_dict["2010"].update({cleaned_cell_name: year_2010})
+        social_dict["2018"].update({cleaned_cell_name: year_2018})
 
-    for year in social_dict.keys():
-        data = social_dict[year]
-        yearly_data = flatten_tuple(data.values())
-        yearly_data = (country_id, int(year), *yearly_data)
+    p.pprint(social_dict["2005"])
 
-        print("Social Indicator: ")
-        print(yearly_data)
+    for year in ["2005", "2010", "2018"]:
+        # abbreviation for saving some typing in the following dict's key
+        lef = "Life expectancy (females)"
+        lem = "Life expectancy (males)"
+        pdc = "Population distribution (children)"
+        pde = "Population distribution (elders)"
+        perf = "Primary enroll ratio (females)"
+        perm = "Primary enroll ratio (males)"
+        serf = "Secondary enroll ratio (females)"
+        serm = "Secondary enroll ratio (males)"
+        terf = "Tertiary enroll ratio (females)"
+        term = "Tertiary enroll ratio (males)"
+        m = "Migrant"
+        mr = "Migrant ratio"
 
-        db.cursor.execute(
-            """
-            INSERT INTO SocialIndicator (
-                country_id, year, population_growth, urban_population, urban_population_growth,fertility_rate, life_expectancy_females, life_expectancy_males, population_distribution_children, population_distribution_adults, migrant, migrant_ratio, refugees, infant_mortality, health_expenditure, physicians_ratio, education_expenditure, primary_enroll_ratio_females, primary_enroll_ratio_males, secondary_enroll_ratio_females, secondary_enroll_ratio_males, tertiary_enroll_ratio_females, tertiary_enroll_ratio_males, homicide_rate, women_in_parliaments
-            ) VALUES (
-                ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
-                ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
-                ?, ?, ?, ?, ?
-            )
-            """,
-            yearly_data,
+        social_dict[year][lem] = None
+        social_dict[year][pde] = None
+        social_dict[year][perm] = None
+        social_dict[year][serm] = None
+        social_dict[year][term] = None
+        social_dict[year][mr] = None
+
+        if social_dict[year][lef]:
+            females, males = social_dict[year][lef]
+            social_dict[year][lef] = females
+            social_dict[year][lem] = males
+
+        if social_dict[year][pdc]:
+            children, elders = social_dict[year][pdc]
+            social_dict[year][pdc] = children
+            social_dict[year][pde] = elders
+
+        if social_dict[year][perf]:
+            females, males = social_dict[year][perf]
+            social_dict[year][perf] = females
+            social_dict[year][perm] = males
+
+        if social_dict[year][serf]:
+            females, males = social_dict[year][serf]
+            social_dict[year][serf] = females
+            social_dict[year][serm] = males
+
+        if social_dict[year][terf]:
+            females, males = social_dict[year][terf]
+            social_dict[year][terf] = females
+            social_dict[year][term] = males
+
+        if social_dict[year][m]:
+            migrant, migrant_ratio = social_dict[year][m]
+            social_dict[year][m] = migrant
+            social_dict[year][mr] = migrant_ratio
+
+        # add country and year in the dict
+        social_dict[year]["year"] = year
+        social_dict[year]["country_id"] = country_id
+
+    p.pprint(social_dict["2005"])
+
+    for year in ["2005", "2010", "2018"]:
+        table_fields_stmt = ", ".join([f'"{key}"' for key in social_dict[year].keys()])
+        placement_stmt = ", ".join("?" * len(social_dict[year]))
+        table_values_tuples = tuple([val for val in social_dict[year].values()])
+
+        print("\n\nSQL Statement:")
+        print(table_fields_stmt, "\n")
+        print(placement_stmt, "\n")
+
+        stmt = "INSERT INTO SocialIndicator ( %s ) VALUES ( %s )" % (
+            table_fields_stmt,
+            placement_stmt,
         )
+
+        print("\n\n", stmt)
+
+        db.cursor.execute(stmt, table_values_tuples)
 
     db.conn.commit()
 
@@ -249,15 +334,15 @@ def extract_env_indicators(table, country_id, db):
 
 
 # find_country_link(db)
-# countries = db.cursor.execute(
-#     """
-#     SELECT id, name, link FROM Countries LIMIT 5
-#     """
-# )
+countries = db.cursor.execute(
+    """
+    SELECT id, name, link FROM Countries LIMIT 5
+    """
+)
 
-# for country in countries.fetchall():
-#     print(country)
-#     extract_country(*country, db)
+for country in countries.fetchall():
+    print(country)
+    extract_country(*country, db)
 # extract_country(1, "AS", "en/iso/as.html", db)
 
 db.conn.commit()

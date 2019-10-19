@@ -4,16 +4,13 @@ import sqlite3
 import re
 from utils import *
 from database import DataBaseManagement
+import pprint
 
-DEBUG = True
+
 db = DataBaseManagement("./test.db")
-
-if DEBUG:
-    import pprint
-
-    p = pprint.PrettyPrinter(indent=4)
-    db.drop_tables()
-    db.create_table(table="econ")
+db.drop_tables()
+db.create_table(table="env")
+p = pprint.PrettyPrinter(indent=4)
 
 
 BASE_URL = "http://data.un.org/"
@@ -55,9 +52,10 @@ def extract_country(country_id, country_name, country_link, db):
             pass
             # extract_social_indicators(table, country_id, db)
         elif table.summary.text == "Economic indicators":
-            extract_economic_indicators(table, country_id, db)
-        # elif table.summary.text == "Environment and infrastructure indicators":
-        #     extract_env_indicators(table, country_id, db)
+            pass
+            # extract_economic_indicators(table, country_id, db)
+        elif table.summary.text == "Environment and infrastructure indicators":
+            extract_env_indicators(table, country_id, db)
 
 
 def extract_general_information(table, country_id, db):
@@ -154,8 +152,6 @@ def extract_economic_indicators(table, country_id, db):
         econ_dict["2010"].update({cleaned_cell_name: year_2010})
         econ_dict["2018"].update({cleaned_cell_name: year_2018})
 
-    p.pprint(econ_dict["2005"])
-
     for year in ["2005", "2010", "2018"]:
         if econ_dict[year]["Labour participation (females)"]:
             females, males = econ_dict[year]["Labour participation (females)"]
@@ -165,45 +161,17 @@ def extract_economic_indicators(table, country_id, db):
         econ_dict[year]["year"] = year
         econ_dict[year]["country_id"] = country_id
 
-    p.pprint(econ_dict["2005"])
-
     for year in ["2005", "2010", "2018"]:
         table_fields_stmt = ", ".join([f'"{key}"' for key in econ_dict[year].keys()])
         placement_stmt = ", ".join("?" * len(econ_dict[year]))
         table_values_tuples = tuple([val for val in econ_dict[year].values()])
-
-        print("\n\nSQL Statement:")
-        print(table_fields_stmt, "\n")
-        print(placement_stmt, "\n")
 
         stmt = "INSERT INTO EconIndicator ( %s ) VALUES ( %s )" % (
             table_fields_stmt,
             placement_stmt,
         )
 
-        print("\n\n", stmt)
-
         db.cursor.execute(stmt, table_values_tuples)
-
-    # for year in econ_dict.keys():
-    #     data = econ_dict[year]
-    #     yearly_data = flatten_tuple(data.values())
-    #     yearly_data = (country_id, int(year), *yearly_data)
-    #     if not len(yearly_data) == 21:
-    #         yearly_data = (*yearly_data, None)
-
-    #     print("Econ Indicator: ")
-    #     print(yearly_data)
-
-    # db.cursor.execute(
-    #     """
-    #     INSERT INTO EconIndicator (country_id, year, GDP, GDP_growth, GDP_per_capita, agriculture, industry, services, employ_agriculture, employ_industry, employ_services, unemployment, participation_rate_female, participation_rate_male, CPI, agriculture_index, exports, imports, trade_balance, current_account, industrial_index) VALUES (
-    #         ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-    #         ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-    #         ?)
-    #     """,
-    #     yearly_data,
-    # )
 
     db.conn.commit()
 
@@ -350,11 +318,35 @@ def extract_env_indicators(table, country_id, db):
     table_name = table.summary.text
     rows = table.find_all("tr")[1:]
 
-    social_dict = {"2005": {}, "2010": {}, "2018": {}}
+    env_headings = [
+        "Internet usage",
+        "Research expenditure",
+        "Threatened species",
+        "Forested area",
+        "CO2 emission",
+        "CO2 emission (per capita)",
+        "Energy production",
+        "Energy supply",
+        "Tourists",
+        "Important sites",
+        "Drinking water (urban)",
+        "Drinking water (rural)",
+        "Sanitation (urban)",
+        "Sanitation (rural)",
+        "Assist disbursed",
+        "Assist received",
+    ]
+
+    env_dict = {"2005": {}, "2010": {}, "2018": {}}
+
+    for year in ["2005", "2010", "2018"]:
+        for heading in env_headings:
+            env_dict[year][heading] = None
 
     for row in rows:
         cells = row.find_all("td")
         cell_name = cells[0].text.replace("\xa0", "")
+        cleaned_cell_name = clean_env_indicator_header(cell_name)
 
         year_2005 = remove_trailing_chars(cells[1].text)
         year_2010 = remove_trailing_chars(cells[2].text)
@@ -364,29 +356,61 @@ def extract_env_indicators(table, country_id, db):
         year_2010 = format_value(year_2010)
         year_2018 = format_value(year_2018)
 
-        social_dict["2005"].update({cell_name: year_2005})
-        social_dict["2010"].update({cell_name: year_2010})
-        social_dict["2018"].update({cell_name: year_2018})
+        env_dict["2005"].update({cleaned_cell_name: year_2005})
+        env_dict["2010"].update({cleaned_cell_name: year_2010})
+        env_dict["2018"].update({cleaned_cell_name: year_2018})
 
-    for year in social_dict.keys():
-        data = social_dict[year]
-        yearly_data = flatten_tuple(data.values())
-        yearly_data = (country_id, int(year), *yearly_data)
+    p.pprint(env_dict["2005"])
 
-        print("Env Indicator: ")
-        print(yearly_data)
+    for year in ["2005", "2010", "2018"]:
+        # abbreviation for saving time in typing
+        co2 = "CO2 emission"
+        co2pc = "CO2 emission (per capita)"
+        dwr = "Drinking water (rural)"
+        dwu = "Drinking water (urban)"
+        sr = "Sanitation (rural)"
+        su = "Sanitation (urban)"
+        d = env_dict[year]
 
-        db.cursor.execute(
-            """
-            INSERT INTO EnvIndicator (
-                country_id, year, internet_individual, threatened_species, forested_area, carbon_dioxide_emission, carbon_dioxide_emission_per_capita, energy_production, energy_supply, protected_sites_ratio, drinking_water_urban, drinking_water_rural, sanitation_urban, sanitation_rural, assistance_received
-            ) VALUES (
-                ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-                ?, ?, ?, ?, ?
-            )
-        """,
-            yearly_data,
+        if d[co2]:
+            emission, emission_per_capita = d[co2]
+            d[co2] = emission
+            d[co2pc] = emission_per_capita
+
+        if d[dwu]:
+            urban, rural = d[dwu]
+            d[dwu] = urban
+            d[dwr] = rural
+
+        if d[su]:
+            urban, rural = d[su]
+            d[su] = urban
+            d[sr] = rural
+    
+        d['year'] = year
+        d['country_id'] = country_id
+    
+    p.pprint(env_dict['2005'])
+
+    for year in ["2005", "2010", "2018"]:
+        table_fields_stmt = ", ".join([f'"{key}"' for key in env_dict[year].keys()])
+        placement_stmt = ", ".join("?" * len(env_dict[year]))
+        table_values_tuples = tuple([val for val in env_dict[year].values()])
+
+        print("\n\nSQL Statement:")
+        print(table_fields_stmt, "\n")
+        print(placement_stmt, "\n")
+
+        stmt = "INSERT INTO EnvIndicator ( %s ) VALUES ( %s )" % (
+            table_fields_stmt,
+            placement_stmt,
         )
+
+        print("\n\n", stmt)
+
+        db.cursor.execute(stmt, table_values_tuples)
+
+
     db.conn.commit()
 
 

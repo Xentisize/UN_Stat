@@ -160,3 +160,36 @@ def clean_econ_indicator_header(value):
     elif v.startswith("Balance of payments"):
         return "Current account"
 
+
+def clean_env_indicator_header(value):
+    # shorthand for saving typing
+    v = value
+    if v.startswith("Individuals using the Internet"):
+        return "Internet usage"
+    elif v.startswith("Research"):
+        return "Research expenditure"
+    elif v.startswith("Threatened"):
+        return "Threatened species"
+    elif v.startswith("Forested"):
+        return "Forested area"
+    elif v.startswith("CO2"):
+        # CO2 per capita pending
+        return "CO2 emission"
+    elif v.startswith("Energy production"):
+        return "Energy production"
+    elif v.startswith("Energy supply"):
+        return "Energy supply"
+    elif v.startswith("Tourist"):
+        return "Tourists"
+    elif v.startswith("Important sites"):
+        return "Important sites"
+    elif v.startswith("Pop. using improved drinking"):
+        # rural is pending
+        return "Drinking water (urban)"
+    elif v.startswith("Pop. using improved sanitation"):
+        # rural is pending
+        return "Sanitation (urban)"
+    elif v.startswith("Net Official Development Assist. disbursed"):
+        return "Assist disbursed"
+    elif v.startswith("Net Official Development Assist. received"):
+        return "Assist received"

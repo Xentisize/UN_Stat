@@ -12,7 +12,7 @@ class DataBaseManagement:
         table_function["general"] = self.create_general_table
         table_function["econ"] = self.create_econ_table
         table_function["social"] = self.create_social_table
-        table_function["environment"] = self.create_environment_table
+        table_function["env"] = self.create_environment_table
 
         if table == "all":
             for func in table_function.values():
@@ -25,8 +25,8 @@ class DataBaseManagement:
             table_function["econ"]()
         elif table == "social":
             table_function["social"]()
-        elif table == "environment":
-            table_function["environment"]
+        elif table == "env":
+            table_function["env"]()
 
     def create_countries_table(self):
         stmt = """
@@ -151,21 +151,26 @@ class DataBaseManagement:
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             country_id INTEGER,
             year INTEGER,
-            internet_individual REAL,
-            threatened_species INTEGER,
-            forested_area REAL,
-            carbon_dioxide_emission REAL,
-            carbon_dioxide_emission_per_capita REAL,
-            energy_production INTEGER,
-            energy_supply INTEGER,
-            protected_sites_ratio REAL,
-            drinking_water_urban REAL,
-            drinking_water_rural REAL,
-            sanitation_urban REAL,
-            sanitation_rural REAL,
-            assistance_received REAL
+            "Internet usage" REAL,
+            "Research expenditure" REAL,
+            "Threatened species" INTEGER,
+            "Forested area" REAL,
+            "CO2 emission" REAL,
+            "CO2 emission (per capita)" REAL,
+            "Energy production" INTEGER,
+            "Energy supply" INTEGER,
+            "Tourists" INTEGER,
+            "Important sites" REAL,
+            "Drinking water (urban)" REAL,
+            "Drinking water (rural)" REAL,
+            "Sanitation (urban)" REAL,
+            "Sanitation (rural)" REAL,
+            "Assist disbursed" REAL,
+            "Assist received" REAL
         )
         """
+        print("Create env table")
+
         self.cursor.execute(stmt)
         self.conn.commit()
 
@@ -178,7 +183,7 @@ class DataBaseManagement:
         # DROP TABLE IF EXISTS EnvIndicator;
         # """
         stmt = """
-        DROP TABLE IF EXISTS EconIndicator;
+        DROP TABLE IF EXISTS EnvIndicator;
         """
         self.cursor.executescript(stmt)
         self.conn.commit()

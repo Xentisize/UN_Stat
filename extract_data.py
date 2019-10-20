@@ -7,9 +7,9 @@ from database import DataBaseManagement
 import pprint
 
 
-db = DataBaseManagement("./test.db")
-db.drop_tables()
-db.create_table(table="env")
+db = DataBaseManagement("./un.db")
+# db.drop_tables()
+# db.create_table()
 p = pprint.PrettyPrinter(indent=4)
 
 
@@ -23,7 +23,7 @@ def find_country_link(db):
     countries = parsed_html.find_all(class_="CountryList")[0]
     country_links = countries.find_all("a")
 
-    for country in country_links[:5]:
+    for country in country_links:
         name = country.text
         link = country["href"]
 
@@ -46,16 +46,17 @@ def extract_country(country_id, country_name, country_link, db):
 
     for table in tables:
         if table.summary.text == "General Information":
-            # extract_general_information(table, country_id, db)
-            pass
+            extract_general_information(table, country_id, db)
+            # pass
         elif table.summary.text == "Social indicators":
-            pass
-            # extract_social_indicators(table, country_id, db)
+            # pass
+            extract_social_indicators(table, country_id, db)
         elif table.summary.text == "Economic indicators":
-            pass
-            # extract_economic_indicators(table, country_id, db)
+            # pass
+            extract_economic_indicators(table, country_id, db)
         elif table.summary.text == "Environment and infrastructure indicators":
             extract_env_indicators(table, country_id, db)
+            # pass
 
 
 def extract_general_information(table, country_id, db):
@@ -68,8 +69,9 @@ def extract_general_information(table, country_id, db):
         field = cells[0].text.replace("\xa0", "")
         cleaned_field = clean_general_information_header(field)
         value = cells[2].text.replace("\xa0", "")
-        if re.search("\d+\s?\.?\d+[a-z]", value):
-            value = value[:-1]
+        # if re.search("\d+\s?\.?\d+[a-z]", value):
+        #     value = value[:-1]
+        value = remove_trailing_chars(value)
         info_dict[cleaned_field] = value
 
     headings = [
@@ -161,6 +163,8 @@ def extract_economic_indicators(table, country_id, db):
         econ_dict[year]["year"] = year
         econ_dict[year]["country_id"] = country_id
 
+    # p.pprint(econ_dict["2005"])
+
     for year in ["2005", "2010", "2018"]:
         table_fields_stmt = ", ".join([f'"{key}"' for key in econ_dict[year].keys()])
         placement_stmt = ", ".join("?" * len(econ_dict[year]))
@@ -172,6 +176,7 @@ def extract_economic_indicators(table, country_id, db):
         )
 
         db.cursor.execute(stmt, table_values_tuples)
+        p.pprint(econ_dict["2005"])
 
     db.conn.commit()
 
@@ -218,6 +223,7 @@ def extract_social_indicators(table, country_id, db):
     for row in rows:
         cells = row.find_all("td")
         cell_name = cells[0].text.replace("\xa0", "")
+        p.pprint(f'Cell name: {cell_name}')
         cleaned_cell_name = clean_social_indicator_header(cell_name)
 
         year_2005 = remove_trailing_chars(cells[1].text)
@@ -227,6 +233,9 @@ def extract_social_indicators(table, country_id, db):
         year_2005 = format_value(year_2005)
         year_2010 = format_value(year_2010)
         year_2018 = format_value(year_2018)
+
+        p.pprint(f"{cleaned_cell_name} - {year_2005}")
+        p.pprint(f"{cleaned_cell_name} - {year_2010}")
 
         social_dict["2005"].update({cleaned_cell_name: year_2005})
         social_dict["2010"].update({cleaned_cell_name: year_2010})
@@ -248,14 +257,6 @@ def extract_social_indicators(table, country_id, db):
         term = "Tertiary enroll ratio (males)"
         m = "Migrant"
         mr = "Migrant ratio"
-
-        # commented after testing. need checking
-        # social_dict[year][lem] = None
-        # social_dict[year][pde] = None
-        # social_dict[year][perm] = None
-        # social_dict[year][serm] = None
-        # social_dict[year][term] = None
-        # social_dict[year][mr] = None
 
         if social_dict[year][lef]:
             females, males = social_dict[year][lef]
@@ -297,10 +298,6 @@ def extract_social_indicators(table, country_id, db):
         table_fields_stmt = ", ".join([f'"{key}"' for key in social_dict[year].keys()])
         placement_stmt = ", ".join("?" * len(social_dict[year]))
         table_values_tuples = tuple([val for val in social_dict[year].values()])
-
-        print("\n\nSQL Statement:")
-        print(table_fields_stmt, "\n")
-        print(placement_stmt, "\n")
 
         stmt = "INSERT INTO SocialIndicator ( %s ) VALUES ( %s )" % (
             table_fields_stmt,
@@ -378,6 +375,7 @@ def extract_env_indicators(table, country_id, db):
             d[co2pc] = emission_per_capita
 
         if d[dwu]:
+            print(d[dwu])
             urban, rural = d[dwu]
             d[dwu] = urban
             d[dwr] = rural
@@ -386,20 +384,14 @@ def extract_env_indicators(table, country_id, db):
             urban, rural = d[su]
             d[su] = urban
             d[sr] = rural
-    
-        d['year'] = year
-        d['country_id'] = country_id
-    
-    p.pprint(env_dict['2005'])
+
+        d["year"] = year
+        d["country_id"] = country_id
 
     for year in ["2005", "2010", "2018"]:
         table_fields_stmt = ", ".join([f'"{key}"' for key in env_dict[year].keys()])
         placement_stmt = ", ".join("?" * len(env_dict[year]))
         table_values_tuples = tuple([val for val in env_dict[year].values()])
-
-        print("\n\nSQL Statement:")
-        print(table_fields_stmt, "\n")
-        print(placement_stmt, "\n")
 
         stmt = "INSERT INTO EnvIndicator ( %s ) VALUES ( %s )" % (
             table_fields_stmt,
@@ -410,22 +402,34 @@ def extract_env_indicators(table, country_id, db):
 
         db.cursor.execute(stmt, table_values_tuples)
 
-
     db.conn.commit()
 
+
+
+db.cursor.execute(
+    """
+    SELECT country_id FROM GeneralInfo ORDER BY country_id DESC LIMIT 1
+    """
+)
+
+last_insert_general_info_id = db.cursor.fetchone()[0]
+print('Last country_id:', last_insert_general_info_id)
 
 # find_country_link(db)
 countries = db.cursor.execute(
     """
-    SELECT id, name, link FROM Countries LIMIT 5
+    SELECT id, name, link FROM Countries
     """
 )
 
+
 for country in countries.fetchall():
+    if country[0] < last_insert_general_info_id:
+        continue
     print(country)
-    print("Extracting country")
     extract_country(*country, db)
-# extract_country(1, "AS", "en/iso/as.html", db)
+
+# extract_country(7, 'Anguilla', 'en/iso/ai.html', db)
 
 db.conn.commit()
 

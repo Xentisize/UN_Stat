@@ -1,8 +1,11 @@
 import re
+import pprint
+
+p = pprint.PrettyPrinter(indent=4)
 
 
 def format_value(value):
-    print(value)
+    p.pprint(value)
     if not value:
         return None
 
@@ -11,10 +14,25 @@ def format_value(value):
     if value == "...":
         return None
     if value == "... / ...":
-        return value.split(" / ")
+        return (None, None)
+    if re.search("^\.{3}\s*/\s*\d+", value):
+        first, second = value.split("/")
+        # print(f"First value: {first}")
+        # print(f"Second value: {second}")
+        first = first.strip()
+        second = second.strip()
+        return (None, float(second))
+    if re.search("^\d[\d\.]+ / \.{3}$", value):
+        first, second = value.split("/")
+        return (float(first.strip()), None)
+    if re.search("^\.{3} / \d[\d\.]+$", value):
+        first, second = value.split()
+        return (None, float(second.strip()))
     if re.search("(~)?\d+\.?\d+\s?/~?\s*~?\d+\.?\d+", value):
         # split and format the fraction (dd / dd)
         first, second = value.split("/")
+        first = first.replace(" ", "")
+        second = second.replace(" ", "")
         return (float(first.strip()), float(second.strip()))
     if re.search("-?\s?\d+\.\d+$", value):
         # format decimal number
@@ -37,7 +55,9 @@ def format_value(value):
 
 
 def remove_trailing_chars(value):
-    m = re.search("\d+\s?\.?\d?([a-z,]+)", value)
+    m = re.search("\d+\s?\.?\d?([a-z,]+)", value) or re.search(
+        "[\.]{3}([a-zA-Z,]+)$", value
+    )
     if m:
         value = value.replace(m.group(1), "")
         return value
@@ -80,7 +100,8 @@ def clean_general_information_header(value):
 def clean_social_indicator_header(value):
     if value.startswith("Population growth"):
         return "Population growth"
-    elif value.startswith("Urban population(% of"):
+    elif re.search("^Urban population[a-zA-Z,]*\s?\(", value):
+        print("Urban reached")
         return "Urban population"
     elif value.startswith("Urban population growth"):
         return "Urban population growth"

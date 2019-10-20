@@ -169,21 +169,20 @@ class DataBaseManagement:
             "Assist received" REAL
         )
         """
-        print("Create env table")
 
         self.cursor.execute(stmt)
         self.conn.commit()
 
     def drop_tables(self):
-        # stmt = """
-        # DROP TABLE IF EXISTS Countries;
-        # DROP TABLE IF EXISTS GeneralInfo;
-        # DROP TABLE IF EXISTS EconIndicator;
-        # DROP TABLE IF EXISTS SocialIndicator;
-        # DROP TABLE IF EXISTS EnvIndicator;
-        # """
         stmt = """
+        DROP TABLE IF EXISTS Countries;
+        DROP TABLE IF EXISTS GeneralInfo;
+        DROP TABLE IF EXISTS EconIndicator;
+        DROP TABLE IF EXISTS SocialIndicator;
         DROP TABLE IF EXISTS EnvIndicator;
         """
+        # stmt = """
+        # DROP TABLE IF EXISTS SocialIndicator;
+        # """
         self.cursor.executescript(stmt)
         self.conn.commit()

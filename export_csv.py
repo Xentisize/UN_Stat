@@ -229,6 +229,7 @@ HEADING_SOCIAL_INDICATORS = [
 ]
 
 HEADING_ENV_INDICATORS = [
+    "Year",
     "Individuals using Internet",
     "Research & Development expenditure (%)",
     "Threatened species",

@@ -1,0 +1,237 @@
+id,country_id,region,membership_date,population,population_density,surface_area,sex_ratio,capital_city,capital_population,currency,exchange_rate
+1,1,Southern Asia,19-Nov-46,36373,55.7,652864,106.2,Kabul,4011.8,Afghani (AFN),69.5
+2,2,Southern Europe,14-Dec-55,2934,107.1,28748,101.8,Tirana,475.6,Lek (ALL),111.1
+3,3,Northern Africa,08-Oct-62,42008,17.6,2 381 741,102.0,Algiers,2693.5,Algerian Dinar (DZD),114.9
+4,4,Polynesia,,56,278.4,199,103.6,Pago Pago,48.5,US Dollar (USD),
+5,5,Southern Europe,28-Jul-93,77,163.7,468,102.3,Andorra la Vella,22.6,Euro (EUR),0.8
+6,6,Middle Africa,01-Dec-76,30774,24.7,1 246 700,96.3,Luanda,7774.2,Kwanza (AOA),165.9
+7,7,Caribbean,,15,167.2,91,97.6,The Valley,1.4,E. Caribbean Dollar (XCD)e,2.7
+8,8,Caribbean,11-Nov-81,103,234.2,442,92.3,Saint John's,20.8,E. Caribbean Dollar (XCD)c,2.7
+9,9,South America,24-Oct-45,44689,16.3,2 780 400,95.9,Buenos Aires,14966.5,Argentine Peso (ARS),18.6
+10,10,Western Asia,02-Mar-92,2934,103.1,29743,88.8,Yerevan,1080.3,Armenian Dram (AMD),484.1
+11,11,Caribbean,,106,587.1,180,90.3,Oranjestad,29.9,Aruban Florin (AWG),1.8
+12,12,Oceania,01-Nov-45,24772,3.2,7 692 060,99.3,Canberra,447.7,Australian Dollar (AUD),1.3
+13,13,Western Europe,14-Dec-55,8752,106.2,83871,96.3,Vienna,1900.5,Euro (EUR),0.8
+14,14,Western Asia,02-Mar-92,9924,120.1,86600,99.3,Baku,2285.7,Azerbaijan manat (AZN),1.7
+15,15,Caribbean,18-Sep-73,399,39.9,13940,96.0,Nassau,279.7,Bahamian Dollar (BSD),1.0
+16,16,Western Asia,21-Sep-71,1567,2061.8,771,173.0,Manama,564.6,Bahraini Dinar (BHD),0.4
+17,17,Southern Asia,17-Sep-74,166368,1278.1,147570,101.6,Dhaka,19578.4,Taka (BDT),82.7
+18,18,Caribbean,09-Dec-66,286,666.0,431,91.8,Bridgetown,89.2,Barbados Dollar (BBD),2.0
+19,19,Eastern Europe,24-Oct-45,9452,46.6,207600,87.0,Minsk,2004.7,Belarusian Ruble (BYN),2.0
+20,20,Western Europe,27-Dec-45,11498,379.7,30528,97.7,Brussels,2049.5,Euro (EUR),0.8
+21,21,Central America,25-Sep-81,382,16.8,22966,99.0,Belmopan,23.0,Belize Dollar (BZD),2.0
+22,22,Western Africa,20-Sep-60,11486,101.9,114763,99.6,Porto-Novoc,285.3,"CFA Franc, BCEAO (XOF)d",546.9
+23,23,Northern America,,61,1221.4,53,91.4,Hamilton,10.1,Bermudian Dollar (BMD),1.0
+24,24,Southern Asia,21-Sep-71,817,21.4,38394,112.9,Thimphu,203.3,Ngultrum (BTN),63.9
+25,25,South America,14-Nov-45,11216,10.4,1 098 581,100.2,Sucred,277.9,Boliviano (BOB),6.9
+26,26,Caribbean,,26,78.4,,,Kralendijk,11.3,US Dollar (USD),
+27,27,Southern Europe,22-May-92,3504,68.7,51209,96.5,Sarajevo,342.6,Convertible Mark (BAM),1.6
+28,28,Southern Africa,17-Oct-66,2333,4.1,582000,97.8,Gaborone,269.3,Pula (BWP),9.9
+29,29,South America,24-Oct-45,210868,25.2,8 515 767,96.6,Brasilia,4469.6,Brazilian Real (BRL),3.3
+30,30,Caribbean,,32,211.5,151,97.1,Road Town,15.1,US Dollar (USD),
+31,31,South-eastern Asia,21-Sep-84,434,82.4,5765,106.0,Bandar Seri Begawan,40.8,Brunei Dollar (BND),1.3
+32,32,Eastern Europe,14-Dec-55,7037,64.8,111002,94.6,Sofia,1272.4,Bulgarian Lev (BGN),1.6
+33,33,Western Africa,20-Sep-60,19752,72.2,272967,99.6,Ouagadougou,2531.4,"CFA Franc, BCEAO (XOF)c",546.9
+34,34,Eastern Africa,18-Sep-62,11216,436.8,27830,97.0,Bujumbura,899.0,Burundi Franc (BIF),1766.7
+35,35,Western Africa,16-Sep-75,553,137.3,4033,99.4,Praia,167.5,Cabo Verde Escudo (CVE),92.4
+36,36,South-eastern Asia,14-Dec-55,16246,92.0,181035,95.3,Phnom Penh,1952.3,Riel (KHR),4041.5
+37,37,Middle Africa,20-Sep-60,24678,52.2,475650,100.2,YaoundÃ©,3655.7,"CFA Franc, BEAC (XAF)c",546.9
+38,38,Northern America,09-Nov-45,36954,4.1,9 984 670,98.5,Ottawa,1363.2,Canadian Dollar (CAD),1.3
+39,39,Caribbean,,62,259.8,264,100.4,George Town,34.9,Cayman Islands Dollar (KYD),0.8
+40,40,Middle Africa,20-Sep-60,4737,7.6,622984,97.3,Bangui,850.9,"CFA Franc, BEAC (XAF)c",546.9
+41,41,Middle Africa,20-Sep-60,15353,12.2,1 284 000,100.2,N'Djamena,1322.7,"CFA Franc, BEAC (XAF)c",546.9
+42,42,Northern Europe,,166,874.1,180,98.5,Saint Helierd,34.4,Pound Sterling (GBP),0.7
+43,43,South America,24-Oct-45,18197,24.5,756102,98.2,Santiago,6680.4,Chilean Peso (CLP),615.2
+44,44,Eastern Asia,24-Oct-45,1 415 046,150.7,9 600 000,106.3,Beijing,19618.0,Yuan Renminbi (CNY),6.5
+45,45,Eastern Asia,,7429,7075.1,1106,84.8,Hong Kong,7428.9,Hong Kong Dollar (HKD),7.8
+46,46,Eastern Asia,,632,21151.1,30,92.4,Macao,632.4,Pataca (MOP),8.1
+47,47,South America,05-Nov-45,49465,44.6,1 141 748,96.8,Bogota,10574.4,Colombian Peso (COP),2971.6
+48,48,Eastern Africa,12-Nov-75,832,447.3,2235,101.8,Moroni,62.4,Comorian Franc (KMF),410.2
+49,49,Middle Africa,20-Sep-60,5400,15.8,342000,100.1,Brazzaville,2229.7,"CFA Franc, BEAC (XAF)c",546.9
+50,50,Polynesia,,17,72.5,236,97.4,Avarua,13.1,New Zealand Dollar (NZD),1.4
+51,51,Central America,02-Nov-45,4953,97.0,51100,100.0,San JosÃ©,1357.7,Costa Rican Colon (CRC),569.5
+52,52,Southern Europe,22-May-92,4165,74.4,56594,93.1,Zagreb,685.6,Kuna (HRK),6.3
+53,53,Caribbean,24-Oct-45,11489,107.9,109884,100.1,Havana,2136.5,Cuban Peso (CUP)c,1.0
+54,54,Caribbean,,162,363.9,444,84.7,Willemstad,144.0,Neth. Ant. Guilder (ANG)c,1.8
+55,55,Western Asia,20-Sep-60,1189,128.7,9251,100.1,Nicosia,269.5,Euro (EUR),0.8
+56,56,Eastern Europe,19-Jan-93,10625,137.6,78868,96.7,Prague,1291.6,Czech Koruna (CZK),21.3
+57,57,Western Africa,20-Sep-60,24906,78.3,322463,102.5,Yamoussoukroc,231.1,"CFA Franc, BCEAO (XOF)d",546.9
+58,58,Eastern Asia,17-Sep-91,25611,212.7,120538,95.7,Pyongyang,3037.9,North Korean Won (KPW),105.0
+59,59,Middle Africa,20-Sep-60,84005,37.1,2 344 858,99.6,Kinshasa,13171.3,Congolese Franc (CDF),1592.2
+60,60,Northern Europe,24-Oct-45,5754,135.6,42921,99.0,Copenhagen,1320.8,Danish Krone (DKK),6.2
+61,61,Eastern Africa,20-Sep-77,971,41.9,23200,100.7,Djibouti,561.6,Djibouti Franc (DJF),177.7
+62,62,Caribbean,18-Dec-78,74,99.1,750,103.0,Roseau,14.9,E. Caribbean Dollar (XCD)d,2.7
+63,63,Caribbean,24-Oct-45,10883,225.2,48671,99.1,Santo Domingo,3172.2,Dominican Peso (DOP),48.5
+64,64,South America,21-Dec-45,16863,67.9,257217,99.9,Quito,1822.4,US Dollar (USD),
+65,65,Northern Africa,24-Oct-45,99376,99.8,1 002 000,102.3,Cairo,20076.0,Egyptian Pound (EGP),17.7
+66,66,Central America,24-Oct-45,6412,309.4,21041,88.4,San Salvador,1106.7,US Dollar (USD),
+67,67,Middle Africa,12-Nov-68,1314,46.8,28052,124.3,Malabo,296.8,"CFA Franc, BEAC (XAF)c",546.9
+68,68,Eastern Africa,28-May-93,5188,51.4,117600,100.5,Asmara,895.9,Nakfa (ERN),15.4
+69,69,Northern Europe,17-Sep-91,1307,30.8,45227,88.3,Tallinn,437.0,Euro (EUR),0.8
+70,70,Southern Africa,24-Sep-68,1391,80.9,17363,93.9,Mbabanec,68.0,Lilangeni (SZL),12.3
+71,71,Eastern Africa,13-Nov-45,107535,107.5,1 104 300,99.7,Addis Ababa,4399.7,Ethiopian Birr (ETB),27.6
+72,72,South America,,3,0.2,12173,110.5,Stanley,2.3,Falkland Islands Pound (FKP),0.7
+73,73,Northern Europe,,50,35.5,1393,107.2,TÃ³rshavn,20.8,Danish Krone (DKK),6.2
+74,74,Melanesia,13-Oct-70,912,49.9,18272,102.9,Suva,178.3,Fiji Dollar (FJD),2.1
+75,75,Northern Europe,14-Dec-55,5542,18.2,338440,97.3,Helsinki,1279.1,Euro (EUR),0.8
+76,76,Western Europe,24-Oct-45,65233,119.1,551500,96.8,Paris,10901.0,Euro (EUR),0.8
+77,77,South America,,290,3.5,83534,100.0,Cayenne,57.5,Euro (EUR),0.8
+78,78,Polynesia,,286,78.1,4000,103.6,Papeete,136.0,CFP Franc (XPF)c,99.5
+79,79,Middle Africa,20-Sep-60,2068,8.0,267668,105.5,Libreville,813.5,"CFA Franc, BEAC (XAF)c",546.9
+80,80,Western Africa,21-Sep-65,2164,213.8,11295,98.0,Banjul,437.2,Dalasi (GMD),43.9
+81,81,Western Asia,31-Jul-92,3907,56.2,69700,91.3,Tbilisi,1077.3,Lari (GEL),2.6
+82,82,Western Europe,18-Sep-73,82294,236.1,357376,97.1,Berlin,3552.1,Euro (EUR),0.8
+83,83,Western Africa,08-Mar-57,29464,129.5,238537,99.4,Accra,2439.4,Ghana Cedi (GHS),4.4
+84,84,Southern Europe,,35,3473.3,6,101.8,Gibraltar,34.7,Gibraltar Pound (GIP),0.7
+85,85,Southern Europe,25-Oct-45,11142,86.4,131957,96.9,Athens,3155.6,Euro (EUR),0.8
+86,86,Northern America,,57,0.1,2 166 086,112.1,Nuuk,18.4,Danish Krone (DKK),6.2
+87,87,Caribbean,17-Sep-74,108,318.6,345,101.0,Saint George's,39.3,E. Caribbean Dollar (XCD)c,2.7
+88,88,Caribbean,,449,265.8,1705,86.2,Basse-Terre,58.4,Euro (EUR),0.8
+89,89,Micronesia,,166,306.9,549,102.5,HagÃ¥tÃ±a,146.9,US Dollar (USD),
+90,90,Central America,21-Nov-45,17245,160.9,108889,97.0,Guatemala City,2851.1,Quetzal (GTQ),7.3
+91,91,Western Africa,12-Dec-58,13053,53.1,245857,100.6,Conakry,1843.1,Guinean Franc (GNF),9225.3
+92,92,Western Africa,17-Sep-74,1907,67.8,36125,96.9,Bissau,558.4,"CFA Franc, BCEAO (XOF)c",546.9
+93,93,South America,20-Sep-66,782,4.0,214969,102.1,Georgetown,109.9,Guyana Dollar (GYD),206.5
+94,94,Caribbean,24-Oct-45,11113,403.2,27750,97.8,Port-au-Prince,2636.8,Gourde (HTG),67.4
+95,95,Southern Europe,,1,1820.5,0,219.2,Vatican City,0.8,Euro (EUR),0.8
+96,96,Central America,17-Dec-45,9417,84.2,112492,99.5,Tegucigalpa,1363.0,Lempira (HNL),23.6
+97,97,Eastern Europe,14-Dec-55,9689,107.0,93024,90.8,Budapest,1759.5,Forint (HUF),258.8
+98,98,Northern Europe,19-Nov-46,338,3.4,103000,100.8,Reykjavik,216.4,Iceland Krona (ISK),104.4
+99,99,Southern Asia,30-Oct-45,1 354 052,455.4,3 287 263,107.5,New Delhi,28513.7,Indian Rupee (INR),63.9
+100,100,South-eastern Asia,28-Sep-50,266795,147.3,1 910 931,101.3,Jakarta,10516.9,Rupiah (IDR),13548.0
+101,101,Southern Asia,24-Oct-45,82012,50.4,1 628 750,101.1,Tehran,8895.9,Iranian Rial (IRR),36074.0
+102,102,Western Asia,21-Dec-45,39340,90.6,435052,102.6,Baghdad,6812.0,Iraqi Dinar (IQD),1184.0
+103,103,Northern Europe,14-Dec-55,4804,69.7,69797,98.5,Dublin,1201.4,Euro (EUR),0.8
+104,104,Northern Europe,,85,148.8,572,98.2,Douglas,27.2,Pound Sterling (GBP),0.7
+105,105,Western Asia,11-May-49,8453,390.6,22072,98.8,Jerusalemc,907.1,New Israeli Sheqel (ILS),3.5
+106,106,Southern Europe,14-Dec-55,59291,201.6,302073,95.2,Rome,4209.7,Euro (EUR),0.8
+107,107,Caribbean,18-Sep-62,2899,267.7,10990,99.0,Kingston,589.1,Jamaican Dollar (JMD),124.3
+108,108,Eastern Asia,18-Dec-56,127185,348.9,377930,95.4,Tokyo,37468.3,Yen (JPY),112.9
+109,109,Western Asia,14-Dec-55,9904,111.6,89318,102.6,Amman,2064.6,Jordanian Dinar (JOD),0.7
+110,110,Central Asia,02-Mar-92,18404,6.8,2 724 902,93.9,Astana,1068.1,Tenge (KZT),332.3
+111,111,Eastern Africa,16-Dec-63,50951,89.5,591958,98.8,Nairobi,4385.9,Kenyan Shilling (KES),103.2
+112,112,Micronesia,14-Sep-99,118,146.2,726,97.3,Bairiki,3.2,Australian Dollar (AUD),1.3
+113,113,Western Asia,14-May-63,4197,235.5,17818,134.8,Kuwait City,2989.3,Kuwaiti Dinar (KWD),0.3
+114,114,Central Asia,02-Mar-92,6133,32.0,199949,98.3,Bishkek,996.3,Som (KGS),68.8
+115,115,South-eastern Asia,14-Dec-55,6961,30.2,236800,99.6,Vientiane,664.8,Lao Kip (LAK),8307.3
+116,116,Northern Europe,17-Sep-91,1930,31.0,64573,85.0,Riga,637.1,Euro (EUR),0.8
+117,117,Western Asia,24-Oct-45,6094,595.7,10452,100.7,Beirut,2385.3,Lebanese Pound (LBP),1507.5
+118,118,Southern Africa,17-Oct-66,2263,74.5,30355,94.5,Maseru,201.9,Loti (LSL),12.3
+119,119,Western Africa,02-Nov-45,4854,50.4,111369,101.9,Monrovia,1418.3,Liberian Dollar (LRD),125.4
+120,120,Northern Africa,14-Dec-55,6471,3.7,1 676 198,101.6,Tripoli,1157.7,Libyan Dinar (LYD),1.4
+121,121,Western Europe,18-Sep-90,38,238.5,160,98.4,Vaduz,5.5,Swiss Franc (CHF),1.0
+122,122,Northern Europe,17-Sep-91,2876,45.9,65286,85.5,Vilnius,536.1,Euro (EUR),0.8
+123,123,Western Europe,24-Oct-45,590,227.9,2586,101.1,Luxembourg,119.8,Euro (EUR),0.8
+124,124,Eastern Africa,20-Sep-60,26263,45.1,587295,99.5,Antananarivo,3058.4,Malagasy Ariary (MGA),3230.2
+125,125,Eastern Africa,01-Dec-64,19165,203.3,118484,98.2,Lilongwe,1029.6,Malawi Kwacha (MWK),732.0
+126,126,South-eastern Asia,17-Sep-57,32042,97.5,330323,106.5,Kuala Lumpurd,7563.9,Malaysian Ringgit (MYR),4.1
+127,127,Southern Asia,21-Sep-65,444,1480.9,300,132.2,Male,176.9,Rufiyaa (MVR),15.4
+128,128,Western Africa,28-Sep-60,19108,15.7,1 240 192,100.3,Bamako,2446.7,"CFA Franc, BCEAO (XOF)c",546.9
+129,129,Southern Europe,01-Dec-64,432,1350.3,315,100.9,Valletta,212.8,Euro (EUR),0.8
+130,130,Micronesia,17-Sep-91,53,295.4,181,104.5,Majuro,30.7,US Dollar (USD),
+131,131,Caribbean,,385,363.3,1128,83.3,Fort-de-France,79.4,Euro (EUR),0.8
+132,132,Western Africa,27-Oct-61,4540,4.4,1 030 700,101.7,Nouakchott,1205.4,Ouguiya (MRU),35.3
+133,133,Eastern Africa,24-Apr-68,1268,624.8,1969,97.7,Port Louis,149.4,Mauritius Rupee (MUR),33.5
+134,134,Eastern Africa,,260,692.5,,96.8,Mamoudzou,6.2,Euro (EUR),0.8
+135,135,Central America,07-Nov-45,130759,67.3,1 964 375,99.2,Mexico City,21580.8,Mexican Peso (MXN),19.8
+136,136,Micronesia,17-Sep-91,106,151.8,702,105.2,Palikir,7.0,US Dollar (USD),
+137,137,Western Europe,28-May-93,39,26105.4,2,94.7,Monaco,38.9,Euro (EUR),0.8
+138,138,Eastern Asia,27-Oct-61,3122,2.0,1 564 116,97.8,Ulaanbaatar,1520.4,Tugrik (MNT),2427.1
+139,139,Southern Europe,28-Jun-06,629,46.8,13812,97.4,Podgorica,177.2,Euro (EUR),0.8
+140,140,Caribbean,,5,52.0,103,106.0,Brades Estate,0.5,E. Caribbean Dollar (XCD)d,2.7
+141,141,Northern Africa,12-Nov-56,36192,81.1,446550,98.2,Rabat,1846.7,Moroccan Dirham (MAD),9.3
+142,142,Eastern Africa,16-Sep-75,30529,38.8,799380,95.6,Maputo,1101.8,Mozambique Metical (MZN),59.0
+143,143,South-eastern Asia,19-Apr-48,53856,82.4,676577,95.5,Nay Pyi Taw,500.2,Kyat (MMK),1362.0
+144,144,Southern Africa,23-Apr-90,2588,3.1,824116,94.8,Windhoek,404.3,Namibia Dollar (NAD),12.4
+145,145,Micronesia,14-Sep-99,11,565.6,21,101.9,Yaren,11.3,Australian Dollar (AUD),1.3
+146,146,Southern Asia,14-Dec-55,29624,206.7,147181,94.5,Kathmandu,1329.7,Nepalese Rupee (NPR),103.0
+147,147,Western Europe,10-Dec-45,17084,506.7,41542,99.1,Amsterdamc,1131.7,Euro (EUR),0.8
+148,148,Melanesia,,280,15.3,18575,101.4,NoumÃ©a,197.8,CFP Franc (XPF)c,99.5
+149,149,Oceania,24-Oct-45,4750,18.0,268107,96.7,Wellington,411.3,New Zealand Dollar (NZD),1.4
+150,150,Central America,24-Oct-45,6285,52.2,130373,97.3,Managua,1047.9,Cordoba Oro (NIO),30.8
+151,151,Western Africa,20-Sep-60,22311,17.6,1 267 000,100.7,Niamey,1213.8,"CFA Franc, BCEAO (XOF)c",546.9
+152,152,Western Africa,07-Oct-60,195875,215.1,923768,102.8,Abuja,2918.5,Naira (NGN),306.0
+153,153,Polynesia,,2,6.2,260,100.0,Alofi,0.7,New Zealand Dollar (NZD),1.4
+154,154,Micronesia,,55,120.0,457,107.1,Garapan,4.0,US Dollar (USD),
+155,155,Northern Europe,27-Nov-45,5353,14.7,386194,102.0,Oslo,1012.2,Norwegian Krone (NOK),8.2
+156,156,Western Asia,07-Oct-71,4830,15.6,309500,195.7,Muscat,1446.6,Rial Omani (OMR),0.4
+157,157,Southern Asia,30-Sep-47,200814,260.5,796095,105.6,Islamabad,1061.4,Pakistan Rupee (PKR),110.4
+158,158,Micronesia,15-Dec-94,22,47.7,459,113.3,Melekeok,11.4,US Dollar (USD),
+159,159,Central America,13-Nov-45,4163,56.0,75320,100.4,Panama City,1783.5,Balboa (PAB),1.0
+160,160,Melanesia,10-Oct-75,8418,18.6,462840,103.5,Port Moresby,366.9,Kina (PGK),3.2
+161,161,South America,24-Oct-45,6897,17.4,406752,102.9,AsunciÃ³n,3222.2,Guarani (PYG),5590.5
+162,162,South America,31-Oct-45,32552,25.4,1 285 216,99.8,Lima,10390.6,Sol (PEN),3.2
+163,163,South-eastern Asia,24-Oct-45,106512,357.2,300000,101.2,Manila,13482.5,Philippine Piso (PHP),49.9
+164,164,Eastern Europe,24-Oct-45,38105,124.4,312679,93.4,Warsaw,1767.8,Zloty (PLN),3.5
+165,165,Southern Europe,14-Dec-55,10291,112.4,92226,89.9,Lisbon,2927.3,Euro (EUR),0.8
+166,166,Caribbean,,3659,412.5,8868,92.6,San Juan,2454.3,US Dollar (USD),
+167,167,Western Asia,21-Sep-71,2695,232.1,11607,298.6,Doha,633.4,Qatari Rial (QAR),3.6
+168,168,Eastern Asia,17-Sep-91,51164,526.2,100284,100.1,Seoul,9963.5,South Korean Won (KRW),1070.5
+169,169,Eastern Europe,02-Mar-92,4041,123.0,33846,92.1,Chisinau,509.7,Moldovan Leu (MDL),17.1
+170,170,Eastern Europe,14-Dec-55,19581,85.1,238391,94.0,Bucharest,1821.4,Romanian Leu (RON),3.9
+171,171,Eastern Europe,24-Oct-45,143965,8.8,17 098 246,86.8,Moscow,12409.7,Russian Ruble (RUB),57.6
+172,172,Eastern Africa,18-Sep-62,12501,506.7,26338,96.2,Kigali,1057.8,Rwanda Franc (RWF),843.3
+173,173,Eastern Africa,,883,353.3,2513,93.9,Saint-Denis,147.2,Euro (EUR),0.8
+174,174,Western Africa,,4,10.4,308,,Jamestown,0.6,Saint Helena Pound (SHP),0.7
+175,175,Caribbean,23-Sep-83,56,214.8,261,97.0,Basseterre,14.4,E. Caribbean Dollar (XCD)e,2.7
+176,176,Caribbean,18-Sep-79,180,294.5,539,95.8,Castries,22.3,E. Caribbean Dollar (XCD)d,2.7
+177,177,Northern America,,6,27.6,242,98.2,Saint-Pierre,5.7,Euro (EUR),0.8
+178,178,Caribbean,16-Sep-80,110,282.6,389,101.7,Kingstown,26.6,E. Caribbean Dollar (XCD)c,2.7
+179,179,Polynesia,15-Dec-76,198,69.9,2842,106.6,Apia,36.1,Tala (WST),2.5
+180,180,Southern Europe,02-Mar-92,34,559.3,61,94.9,San Marino,4.5,Euro (EUR),0.8
+181,181,Middle Africa,16-Sep-75,209,217.5,964,99.2,Sao Tome,80.1,Dobra (STN),20.5
+182,182,Western Asia,24-Oct-45,33554,15.6,2 206 714,134.0,Riyadh,6906.6,Saudi Riyal (SAR),3.8
+183,183,Western Africa,28-Sep-60,16294,84.6,196712,96.7,Dakar,2978.4,"CFA Franc, BCEAO (XOF)d",546.9
+184,184,Southern Europe,01-Nov-00,8762,100.2,88499,95.6,Belgrade,1389.4,Serbian Dinar (RSD),99.1
+185,185,Eastern Africa,21-Sep-76,95,207.0,457,97.2,Victoria,28.1,Seychelles Rupee (SCR),13.8
+186,186,Western Africa,27-Sep-61,7720,107.0,72300,98.2,Freetown,1135.9,Leone (SLL),7537.0
+187,187,South-eastern Asia,21-Sep-65,5792,8274.1,719,97.7,Singapore,5791.9,Singapore Dollar (SGD),1.3
+188,188,Caribbean,,41,1192.7,34,95.7,Philipsburg,40.6,Neth. Ant. Guilder (ANG)e,1.8
+189,189,Eastern Europe,19-Jan-93,5450,113.3,49035,94.6,Bratislava,429.9,Euro (EUR),0.8
+190,190,Southern Europe,22-May-92,2081,103.3,20273,98.7,Ljubljana,286.5,Euro (EUR),0.8
+191,191,Melanesia,19-Sep-78,623,22.3,28896,103.4,Honiara,81.8,Solomon Is. Dollar (SBD)c,7.9
+192,192,Eastern Africa,20-Sep-60,15182,24.2,637657,99.3,Mogadishu,2081.6,Somali Shilling (SOS),24300.0
+193,193,Southern Africa,07-Nov-45,57398,47.3,1 221 037,96.3,Pretoriac,2378.4,Rand (ZAR),12.3
+194,194,Eastern Africa,14-Jul-11,12919,21.1,658841,100.5,Juba,368.9,S. Sudanese Pound (SSP)c,127.9
+195,195,Southern Europe,14-Dec-55,46398,93.0,505944,96.3,Madrid,6497.1,Euro (EUR),0.8
+196,196,Southern Asia,14-Dec-55,20950,334.1,65610,92.4,Colomboc,599.8,Sri Lanka Rupee (LKR),152.9
+197,197,Western Asia,,5053,839.3,6020,102.9,East Jerusalemd,275.1,,
+198,198,Northern Africa,12-Nov-56,41512,23.5,,99.9,Khartoum,5534.1,Sudanese Pound (SDG),6.7
+199,199,South America,04-Dec-75,568,3.6,163820,100.7,Paramaribo,239.5,Surinam Dollar (SRD),7.5
+200,200,Northern Europe,19-Nov-46,9983,24.3,438574,100.3,Stockholm,1583.0,Swedish Krona (SEK),8.2
+201,201,Western Europe,10-Sep-02,8544,216.2,41291,98.3,Bern,422.2,Swiss Franc (CHF),1.0
+202,202,Western Asia,24-Oct-45,18284,99.6,185180,101.9,Damascus,2319.5,Syrian Pound (SYP),436.5
+203,203,Central Asia,02-Mar-92,9107,65.1,142600,100.8,Dushanbe,872.7,Somoni (TJS),8.8
+204,204,South-eastern Asia,16-Dec-46,69183,135.4,513120,95.0,Bangkok,10156.3,Baht (THB),32.7
+205,205,Southern Europe,08-Apr-93,2085,82.7,25713,100.0,Skopje,584.2,Denar (MKD),51.3
+206,206,South-eastern Asia,27-Sep-02,1324,89.0,14919,103.2,Dili,281.1,US Dollar (USD),
+207,207,Western Africa,20-Sep-60,7991,146.9,56785,99.4,LomÃ©,1745.7,"CFA Franc, BCEAO (XOF)c",546.9
+208,208,Polynesia,,1,131.9,12,100.0,Tokelaue,,New Zealand Dollar (NZD),1.4
+209,208,Polynesia,,1,131.9,12,100.0,Tokelaue,,New Zealand Dollar (NZD),1.4
+210,208,Polynesia,,1,131.9,12,100.0,Tokelaue,,New Zealand Dollar (NZD),1.4
+211,208,Polynesia,,1,131.9,12,100.0,Tokelaue,,New Zealand Dollar (NZD),1.4
+212,208,Polynesia,,1,131.9,12,100.0,Tokelaue,,New Zealand Dollar (NZD),1.4
+213,209,Polynesia,14-Sep-99,109,151.4,747,100.7,Nuku'alofa,22.9,Pa'anga (TOP),2.2
+214,210,Caribbean,18-Sep-62,1373,267.6,5127,96.9,Port of Spain,544.4,TT Dollar (TTD)c,6.8
+215,211,Northern Africa,12-Nov-56,11659,75.0,163610,97.7,Tunis,2290.8,Tunisian Dinar (TND),2.3
+216,212,Western Asia,24-Oct-45,81917,106.4,783562,97.2,Ankara,4919.1,Turkish Lira (TRY),3.8
+217,213,Central Asia,02-Mar-92,5852,12.5,488100,97.0,Ashgabat,810.2,Turkmen. Manat (TMT)c,3.5
+218,214,Caribbean,,36,37.9,948,104.1,Cockburn Town,0.1,US Dollar (USD),
+219,215,Polynesia,05-Sep-00,11,376.2,26,102.0,Funafuti,7.0,Australian Dollar (AUD),1.3
+220,216,Eastern Africa,25-Oct-62,44271,221.6,241550,99.0,Kampala,2986.4,Uganda Shilling (UGX),3635.1
+221,217,Eastern Europe,24-Oct-45,44009,76.0,603500,86.0,Kyiv,2956.7,Hryvnia (UAH),28.1
+222,218,Western Asia,09-Dec-71,9542,114.1,83600,257.9,Abu Dhabi,1419.7,UAE Dirham (AED)c,3.7
+223,219,Northern Europe,24-Oct-45,66574,275.2,242495,97.5,London,9046.5,Pound Sterling (GBP),0.7
+224,220,Eastern Africa,14-Dec-61,59091,66.7,947303,97.9,Dodoma,261.6,Tanzanian Shilling (TZS),2230.1
+225,221,Caribbean,,105,299.8,347,91.0,Charlotte Amalie,52.3,US Dollar (USD),
+226,222,Northern America,24-Oct-45,326767,35.7,9 833 517,98.0,"Washington, D.C.",5206.6,US Dollar (USD),
+227,223,South America,18-Dec-45,3470,19.8,173626,93.5,Montevideo,1737.0,Peso Uruguayo (UYU),28.8
+228,224,Central Asia,02-Mar-92,32365,76.1,448969,99.4,Tashkent,2464.0,Uzbekistan Sum (UZS),8125.0
+229,225,Melanesia,15-Sep-81,282,23.1,12189,102.3,Port Vila,52.7,Vatu (VUV),107.5
+230,226,South America,15-Nov-45,32381,36.7,912050,98.9,Caracas,2934.6,BolÃ­var (VEF),10.0
+231,227,South-eastern Asia,20-Sep-77,96491,311.2,330967,98.0,Hanoi,4282.7,Dong (VND),22425.0
+232,228,Polynesia,,12,83.4,142,93.4,Matu-Utu,1.0,CFP Franc (XPF)e,99.5
+233,229,Northern Africa,,567,2.1,266000,109.9,El AaiÃºn,232.4,Moroccan Dirham (MAD),9.3
+234,230,Western Asia,30-Sep-47,28915,54.8,527968,102.1,Sana'a,2779.3,Yemeni Rial (YER),214.9
+235,231,Eastern Africa,01-Dec-64,17609,23.7,752612,98.5,Lusaka,2523.8,Zambian Kwacha (ZMW),9.9
+236,232,Eastern Africa,25-Aug-80,16913,43.7,390757,95.1,Harare,1515.0,Zimbabwe Dollar (ZWL),

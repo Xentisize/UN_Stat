@@ -1,0 +1,233 @@
+id,name,link
+1,Afghanistan,en/iso/af.html
+2,Albania,en/iso/al.html
+3,Algeria,en/iso/dz.html
+4,American Samoa,en/iso/as.html
+5,Andorra,en/iso/ad.html
+6,Angola,en/iso/ao.html
+7,Anguilla,en/iso/ai.html
+8,Antigua and Barbuda,en/iso/ag.html
+9,Argentina,en/iso/ar.html
+10,Armenia,en/iso/am.html
+11,Aruba,en/iso/aw.html
+12,Australia,en/iso/au.html
+13,Austria,en/iso/at.html
+14,Azerbaijan,en/iso/az.html
+15,Bahamas,en/iso/bs.html
+16,Bahrain,en/iso/bh.html
+17,Bangladesh,en/iso/bd.html
+18,Barbados,en/iso/bb.html
+19,Belarus,en/iso/by.html
+20,Belgium,en/iso/be.html
+21,Belize,en/iso/bz.html
+22,Benin,en/iso/bj.html
+23,Bermuda,en/iso/bm.html
+24,Bhutan,en/iso/bt.html
+25,Bolivia (Plurinational State of),en/iso/bo.html
+26,"Bonaire, Sint Eustatius and Saba",en/iso/bq.html
+27,Bosnia and Herzegovina,en/iso/ba.html
+28,Botswana,en/iso/bw.html
+29,Brazil,en/iso/br.html
+30,British Virgin Islands,en/iso/vg.html
+31,Brunei Darussalam,en/iso/bn.html
+32,Bulgaria,en/iso/bg.html
+33,Burkina Faso,en/iso/bf.html
+34,Burundi,en/iso/bi.html
+35,Cabo Verde,en/iso/cv.html
+36,Cambodia,en/iso/kh.html
+37,Cameroon,en/iso/cm.html
+38,Canada,en/iso/ca.html
+39,Cayman Islands,en/iso/ky.html
+40,Central African Republic,en/iso/cf.html
+41,Chad,en/iso/td.html
+42,Channel Islands,en/iso/jg.html
+43,Chile,en/iso/cl.html
+44,China,en/iso/cn.html
+45,"China, Hong Kong SAR",en/iso/hk.html
+46,"China, Macao SAR",en/iso/mo.html
+47,Colombia,en/iso/co.html
+48,Comoros,en/iso/km.html
+49,Congo,en/iso/cg.html
+50,Cook Islands,en/iso/ck.html
+51,Costa Rica,en/iso/cr.html
+52,Croatia,en/iso/hr.html
+53,Cuba,en/iso/cu.html
+54,Curaçao,en/iso/cw.html
+55,Cyprus,en/iso/cy.html
+56,Czechia,en/iso/cz.html
+57,Côte d’Ivoire,en/iso/ci.html
+58,Democratic People's Republic of Korea,en/iso/kp.html
+59,Democratic Republic of the Congo,en/iso/cd.html
+60,Denmark,en/iso/dk.html
+61,Djibouti,en/iso/dj.html
+62,Dominica,en/iso/dm.html
+63,Dominican Republic,en/iso/do.html
+64,Ecuador,en/iso/ec.html
+65,Egypt,en/iso/eg.html
+66,El Salvador,en/iso/sv.html
+67,Equatorial Guinea,en/iso/gq.html
+68,Eritrea,en/iso/er.html
+69,Estonia,en/iso/ee.html
+70,Eswatini,en/iso/sz.html
+71,Ethiopia,en/iso/et.html
+72,Falkland Islands (Malvinas),en/iso/fk.html
+73,Faroe Islands,en/iso/fo.html
+74,Fiji,en/iso/fj.html
+75,Finland,en/iso/fi.html
+76,France,en/iso/fr.html
+77,French Guiana,en/iso/gf.html
+78,French Polynesia,en/iso/pf.html
+79,Gabon,en/iso/ga.html
+80,Gambia,en/iso/gm.html
+81,Georgia,en/iso/ge.html
+82,Germany,en/iso/de.html
+83,Ghana,en/iso/gh.html
+84,Gibraltar,en/iso/gi.html
+85,Greece,en/iso/gr.html
+86,Greenland,en/iso/gl.html
+87,Grenada,en/iso/gd.html
+88,Guadeloupe,en/iso/gp.html
+89,Guam,en/iso/gu.html
+90,Guatemala,en/iso/gt.html
+91,Guinea,en/iso/gn.html
+92,Guinea-Bissau,en/iso/gw.html
+93,Guyana,en/iso/gy.html
+94,Haiti,en/iso/ht.html
+95,Holy See,en/iso/va.html
+96,Honduras,en/iso/hn.html
+97,Hungary,en/iso/hu.html
+98,Iceland,en/iso/is.html
+99,India,en/iso/in.html
+100,Indonesia,en/iso/id.html
+101,Iran (Islamic Republic of),en/iso/ir.html
+102,Iraq,en/iso/iq.html
+103,Ireland,en/iso/ie.html
+104,Isle of Man,en/iso/im.html
+105,Israel,en/iso/il.html
+106,Italy,en/iso/it.html
+107,Jamaica,en/iso/jm.html
+108,Japan,en/iso/jp.html
+109,Jordan,en/iso/jo.html
+110,Kazakhstan,en/iso/kz.html
+111,Kenya,en/iso/ke.html
+112,Kiribati,en/iso/ki.html
+113,Kuwait,en/iso/kw.html
+114,Kyrgyzstan,en/iso/kg.html
+115,Lao People's Democratic Republic,en/iso/la.html
+116,Latvia,en/iso/lv.html
+117,Lebanon,en/iso/lb.html
+118,Lesotho,en/iso/ls.html
+119,Liberia,en/iso/lr.html
+120,Libya,en/iso/ly.html
+121,Liechtenstein,en/iso/li.html
+122,Lithuania,en/iso/lt.html
+123,Luxembourg,en/iso/lu.html
+124,Madagascar,en/iso/mg.html
+125,Malawi,en/iso/mw.html
+126,Malaysia,en/iso/my.html
+127,Maldives,en/iso/mv.html
+128,Mali,en/iso/ml.html
+129,Malta,en/iso/mt.html
+130,Marshall Islands,en/iso/mh.html
+131,Martinique,en/iso/mq.html
+132,Mauritania,en/iso/mr.html
+133,Mauritius,en/iso/mu.html
+134,Mayotte,en/iso/yt.html
+135,Mexico,en/iso/mx.html
+136,Micronesia (Federated States of),en/iso/fm.html
+137,Monaco,en/iso/mc.html
+138,Mongolia,en/iso/mn.html
+139,Montenegro,en/iso/me.html
+140,Montserrat,en/iso/ms.html
+141,Morocco,en/iso/ma.html
+142,Mozambique,en/iso/mz.html
+143,Myanmar,en/iso/mm.html
+144,Namibia,en/iso/na.html
+145,Nauru,en/iso/nr.html
+146,Nepal,en/iso/np.html
+147,Netherlands,en/iso/nl.html
+148,New Caledonia,en/iso/nc.html
+149,New Zealand,en/iso/nz.html
+150,Nicaragua,en/iso/ni.html
+151,Niger,en/iso/ne.html
+152,Nigeria,en/iso/ng.html
+153,Niue,en/iso/nu.html
+154,Northern Mariana Islands,en/iso/mp.html
+155,Norway,en/iso/no.html
+156,Oman,en/iso/om.html
+157,Pakistan,en/iso/pk.html
+158,Palau,en/iso/pw.html
+159,Panama,en/iso/pa.html
+160,Papua New Guinea,en/iso/pg.html
+161,Paraguay,en/iso/py.html
+162,Peru,en/iso/pe.html
+163,Philippines,en/iso/ph.html
+164,Poland,en/iso/pl.html
+165,Portugal,en/iso/pt.html
+166,Puerto Rico,en/iso/pr.html
+167,Qatar,en/iso/qa.html
+168,Republic of Korea,en/iso/kr.html
+169,Republic of Moldova,en/iso/md.html
+170,Romania,en/iso/ro.html
+171,Russian Federation,en/iso/ru.html
+172,Rwanda,en/iso/rw.html
+173,Réunion,en/iso/re.html
+174,Saint Helena,en/iso/sh.html
+175,Saint Kitts and Nevis,en/iso/kn.html
+176,Saint Lucia,en/iso/lc.html
+177,Saint Pierre and Miquelon,en/iso/pm.html
+178,Saint Vincent and the Grenadines,en/iso/vc.html
+179,Samoa,en/iso/ws.html
+180,San Marino,en/iso/sm.html
+181,Sao Tome and Principe,en/iso/st.html
+182,Saudi Arabia,en/iso/sa.html
+183,Senegal,en/iso/sn.html
+184,Serbia,en/iso/rs.html
+185,Seychelles,en/iso/sc.html
+186,Sierra Leone,en/iso/sl.html
+187,Singapore,en/iso/sg.html
+188,Sint Maarten (Dutch part),en/iso/sx.html
+189,Slovakia,en/iso/sk.html
+190,Slovenia,en/iso/si.html
+191,Solomon Islands,en/iso/sb.html
+192,Somalia,en/iso/so.html
+193,South Africa,en/iso/za.html
+194,South Sudan,en/iso/ss.html
+195,Spain,en/iso/es.html
+196,Sri Lanka,en/iso/lk.html
+197,State of Palestine,en/iso/ps.html
+198,Sudan,en/iso/sd.html
+199,Suriname,en/iso/sr.html
+200,Sweden,en/iso/se.html
+201,Switzerland,en/iso/ch.html
+202,Syrian Arab Republic,en/iso/sy.html
+203,Tajikistan,en/iso/tj.html
+204,Thailand,en/iso/th.html
+205,The former Yugoslav Republic of Macedonia,en/iso/mk.html
+206,Timor-Leste,en/iso/tl.html
+207,Togo,en/iso/tg.html
+208,Tokelau,en/iso/tk.html
+209,Tonga,en/iso/to.html
+210,Trinidad and Tobago,en/iso/tt.html
+211,Tunisia,en/iso/tn.html
+212,Turkey,en/iso/tr.html
+213,Turkmenistan,en/iso/tm.html
+214,Turks and Caicos Islands,en/iso/tc.html
+215,Tuvalu,en/iso/tv.html
+216,Uganda,en/iso/ug.html
+217,Ukraine,en/iso/ua.html
+218,United Arab Emirates,en/iso/ae.html
+219,United Kingdom,en/iso/gb.html
+220,United Republic of Tanzania,en/iso/tz.html
+221,United States Virgin Islands,en/iso/vi.html
+222,United States of America,en/iso/us.html
+223,Uruguay,en/iso/uy.html
+224,Uzbekistan,en/iso/uz.html
+225,Vanuatu,en/iso/vu.html
+226,Venezuela (Bolivarian Republic of),en/iso/ve.html
+227,Viet Nam,en/iso/vn.html
+228,Wallis and Futuna Islands,en/iso/wf.html
+229,Western Sahara,en/iso/eh.html
+230,Yemen,en/iso/ye.html
+231,Zambia,en/iso/zm.html
+232,Zimbabwe,en/iso/zw.html
